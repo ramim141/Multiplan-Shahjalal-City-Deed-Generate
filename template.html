@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ভাড়াটিয়া ফরম - চুক্তিপত্র</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: #f3f4f6; /* Light gray background for screen */
+            /* padding: 20px; */ /* Remove body padding, apply to container if needed */
+            font-size: 14px; /* Base font size for screen */
+        }
+
+        /* --- Screen Styles --- */
+        .page-container {
+            width: 100%;
+            max-width: 850px; /* Max width for comfortable reading on screen, approx A4 width + margins */
+            margin: 20px auto; /* Center container */
+            padding: 1rem 1.5rem; /* Padding for screen */
+        }
+
+        .a4-page {
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow for screen */
+            /* Use padding within A4 page to simulate margins for screen */
+            padding: 4rem 2.5rem; /* Generous padding for screen */
+            margin-bottom: 20px; /* Space between pages on screen */
+             box-sizing: border-box;
+             overflow-wrap: break-word; /* Prevent long words/IDs from overflowing */
+             word-wrap: break-word;
+        }
+         /* No page break after on screen */
+         .a4-page { page-break-after: auto; }
+
+        /* --- Content Editable Styles (Screen) --- */
+        [contenteditable="true"] {
+            cursor: text;
+            padding: 2px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 3px;
+        }
+        [contenteditable="true"]:hover {
+             background-color: #fef3c7;
+        }
+        [contenteditable="true"]:focus {
+            outline: none;
+            background-color: #fffbeb;
+            box-shadow: 0 0 0 2px #fbbf24;
+        }
+
+        /* --- Placeholder Styles (Screen) --- */
+        .placeholder {
+            font-weight: bold;
+            color: #D97706; /* Orange-600 */
+        }
+        .placeholder:empty::after {
+            content: '[তথ্য নেই]';
+            color: #9CA3AF;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+         /* --- Print Styles --- */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+                font-size: 11pt; /* Typical print font size */
+                 -webkit-print-color-adjust: exact;
+                 print-color-adjust: exact;
+            }
+
+             /* Hide screen container */
+             .page-container {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                padding: 0;
+             }
+
+            .a4-page {
+                width: 21cm; /* Strict A4 width */
+                height: 29.7cm; /* Strict A4 height */
+                margin: 0; /* Remove margin */
+                padding: 1.5cm; /* Apply print margins via padding */
+                box-shadow: none; /* Remove shadow */
+                page-break-after: always; /* Force page breaks */
+                box-sizing: border-box; /* Ensure padding is included in dimensions */
+                overflow: hidden; /* Hide any potential overflow in print */
+            }
+            .a4-page:last-of-type {
+                 page-break-after: auto; /* No break after the last page */
+            }
+
+            .no-print {
+                display: none; /* Hide non-print elements */
+            }
+
+            /* Remove editing indicators during print */
+            [contenteditable="true"],
+            [contenteditable="true"]:hover,
+            [contenteditable="true"]:focus {
+                 cursor: default;
+                 border-bottom: none;
+                 background-color: transparent !important; /* Ensure transparent BG */
+                 box-shadow: none !important; /* Ensure no shadow */
+                 padding: 0;
+                 border-radius: 0;
+                 outline: none;
+                 /* Prevent editable content from breaking mid-word sometimes */
+                 word-break: break-word;
+            }
+
+            /* Adjust heading sizes for print */
+             h1 { font-size: 18pt; margin-bottom: 1rem;}
+             h2 { font-size: 14pt; margin-bottom: 0.75rem;}
+             h3 { font-size: 12pt; margin-bottom: 0.5rem;}
+             p, li { line-height: 1.5; } /* Improve print readability */
+
+        }
+
+        /* A4 Page Margins via @page (redundant if padding used in @media print, but good practice) */
+        @page {
+            size: A4;
+            margin: 0; /* Margins controlled by .a4-page padding in print */
+        }
+
+    </style>
+</head>
+<body onload="displayData()" class="bg-gray-100"> <!-- Remove body padding -->
+
+    <!-- Wrap everything in a responsive container for screen view -->
+    <div class="page-container">
+
+        <!-- Print Button Area -->
+        <div class="text-center mb-4 no-print p-4 bg-white rounded shadow">
+             <button onclick="window.print()" class="bg-orange-500 text-white py-2 px-6 rounded hover:bg-orange-600 transition duration-200 mb-2 sm:mb-0 sm:mr-2">
+                 প্রিন্ট করুন / PDF সংরক্ষণ করুন
+             </button>
+             <a href="index.html" class="bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600 transition duration-200">
+                 ফর্মে ফিরে যান
+             </a>
+              <p class="mt-2 text-sm text-gray-600">নোট: চুক্তিপত্রের যেকোনো লাইনে ক্লিক করে প্রিন্ট করার পূর্বে সম্পাদনা করতে পারবেন।</p>
+        </div>
+
+        <!-- First A4 Page -->
+        <div class="a4-page">
+            <h1 class="text-3xl font-bold text-center mb-4" contenteditable="true">বিসমিল্লাহির রাহমানির রাহিম</h1>
+            <h2 class="text-xl font-semibold underline text-center mb-6" contenteditable="true">ফ্ল্যাট ভাড়ানামা চুক্তিপত্র</h2>
+
+            <p class="mb-4 leading-relaxed" contenteditable="true">
+                এই চুক্তিপত্রটি সম্পাদিত হইলো <span class="placeholder" id="advance-date">[অগ্রীম তারিখ]</span> তারিখে নিম্নলিখিত পক্ষগণের মধ্যে:</p>
+
+            <p class="text-justify mb-4 leading-relaxed" contenteditable="true">
+               <strong>১ম পক্ষ / মালিক পক্ষ:</strong> নামঃ নুর মোহাম্মদ চৌধুরী পিয়ারু, (মোবাইল- +৪৪৭৮৮৬০৯৮২৩০), ফ্ল্যাট নং- তমাল ২/ডি, মাল্টিপ্ল্যান শাহজালাল সিটি, তমাল ভবন, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা- শাহপরান, জেলা- সিলেট, এর পক্ষে রুহুল আমিন, পিতাঃ বেলাল উদ্দিন, গ্রামঃ রামপাশা, থানাঃ বিশ্বনাথ, জেলাঃ সিলেট। মোবাইল নাম্বারঃ ০১৭৮১-১২৮৮১৮/০১৩২৫-১০৫১০০।
+            </p>
+
+            <div class="text-right mt-2 mb-4">…………………………<br/> ১ম পক্ষ/ মালিক পক্ষের স্বাক্ষর</div>
+
+            <p class="text-justify mb-4 leading-relaxed" contenteditable="true">
+                <strong>২য় পক্ষ / ভাড়াটিয়া পক্ষ:</strong> নামঃ <span class="placeholder" id="tenant-name"></span>, পিতাঃ <span class="placeholder" id="father-name"></span>, মাতাঃ <span class="placeholder" id="mother-name"></span>, ভোটার আইডি নং- <span class="placeholder" id="voter-id"></span>, মোবাইল নাম্বারঃ <span class="placeholder" id="mobile"></span>। <br/>
+                স্থায়ী ঠিকানাঃ <span class="placeholder" id="tenant-address">[গ্রাম/বাসা, হোল্ডিং, ডাকঘর, জেলা, বিভাগ]</span>।
+            </p>
+
+            <div class="text-right mt-2 mb-6">…………………………<br/>২য় পক্ষ/ ভাড়াটিয়া পক্ষের স্বাক্ষর</div>
+
+            <p class="text-justify mb-4 leading-relaxed" contenteditable="true">
+                যেহেতু ১ম পক্ষ নিম্নোক্ত তপশীলে বর্ণিত ফ্ল্যাটটি (<span class="placeholder" id="flat-info">[ভবনের নাম, ফ্ল্যাট নং]</span>) ভাড়া প্রদানে ইচ্ছুক এবং ২য় পক্ষ উক্ত ফ্ল্যাটটি আংশিক ফার্নিচার সহ কার পার্কিং ব্যতীত মাসিক <span class="placeholder" id="total-rent-preamble"></span> টাকায় ভাড়া গ্রহণে সম্মত হইয়াছেন। সেহেতু অদ্য <span class="placeholder" id="advance-date-inline">[অগ্রীম তারিখ]</span> তারিখে ২য় পক্ষ জামানত হিসাবে অগ্রীম নগদ <span class="placeholder" id="advance"></span> টাকা ১ম পক্ষকে প্রদান করিয়া <span class="placeholder" id="start-date"></span> ইং তারিখ হইতে <span class="placeholder" id="end-date"></span> ইং তারিখ পর্যন্ত প্রাথমিক ০১ (এক) বৎসরের জন্য নিম্নোক্ত শর্তাবলী পালনের অঙ্গীকারে এই ভাড়ানামা চুক্তিপত্রে স্বাক্ষর করিলেন। উল্লেখ্য যে, ০১ (এক) বৎসর পর উভয় পক্ষের আলোচনার ভিত্তিতে ভাড়ার পরিমাণ পুনঃনির্ধারিত হইতে পারে।
+            </p>
+
+             <h3 class="text-lg font-semibold mt-6 mb-2 underline" contenteditable="true">তপশীল বর্ণিত সম্পত্তি:</h3>
+             <p class="mb-4 leading-relaxed" contenteditable="true">সিলেট জেলার শাহপরান থানাধীন উপশহর ব্লক-ডি स्थित মাল্টিপ্ল্যান শাহজালাল সিটি এর <span class="placeholder" id="flat-info-schedule">[ভবনের নাম, ফ্ল্যাট নং]</span> ফ্ল্যাট।</p>
+
+            <!-- Footer placeholder for page number (not automatically added by CSS like this) -->
+            <!-- <div class="text-right mt-auto pt-10">পাতা-০১</div> -->
+        </div>
+
+        <!-- Second A4 Page -->
+        <div class="a4-page">
+            <h2 class="text-2xl font-bold text-center mb-6" contenteditable="true">-: শর্তাবলী :-</h2>
+
+            <ol class="list-decimal list-inside space-y-3 leading-relaxed">
+                <li contenteditable="true">২য় পক্ষ ফ্ল্যাটের মাসিক ভাড়া <span class="placeholder" id="total-rent-condition"></span> টাকা প্রতি ইংরেজি মাসের ০১ হইতে ০৭ তারিখের মধ্যে ১ম পক্ষকে পরিশোধ করিবেন।</li>
+                <li contenteditable="true">চুক্তিপত্রের মেয়াদকালে যেকোনো পক্ষ ফ্ল্যাট ছাড়িতে বা ছাড়াইতে চাহিলে চুক্তির মেয়াদ শেষ হওয়ার ন্যূনতম ০২ (দুই) মাস পূর্বে লিখিত নোটিশ প্রদান করিবেন।</li>
+                <li contenteditable="true">ফ্ল্যাটের বিদ্যুৎ বিল (প্রি-পেইড মিটার অনুযায়ী), জেনারেটর বিল (যদি থাকে), পানির বিল এবং প্রযোজ্য সার্ভিস চার্জ ২য় পক্ষ যথা সময়ে নিজ দায়িত্বে পরিশোধ করিবেন।</li>
+                <li contenteditable="true">১ম পক্ষ বা তাহার মনোনীত প্রতিনিধি যুক্তিসঙ্গত নোটিশ প্রদানপূর্বক ফ্ল্যাট পরিদর্শনের অধিকার সংরক্ষণ করিবেন এবং ২য় পক্ষ পরিদর্শনে সহযোগিতা করিবেন।</li>
+                <li contenteditable="true">২য় পক্ষ ফ্ল্যাটে বসবাসকালীন সময়ে দেশের প্রচলিত সকল আইনকানুন মানিয়া চলিবেন। অসামাজিক, রাষ্ট্রবিরোধী বা যেকোনো বেআইনী কার্যকলাপ হইতে সম্পূর্ণরূপে বিরত থাকিবেন।</li>
+                <li contenteditable="true">২য় পক্ষ শুধুমাত্র নিজ পরিবার লইয়া ফ্ল্যাটে বসবাস করিবেন। ১ম পক্ষের লিখিত অনুমতি ব্যতীত ফ্ল্যাটের কোনো অংশ অন্য কাহাকেও সাবলেট বা উপ-ভাড়া প্রদান করিতে পারিবেন না।</li>
+                <li contenteditable="true">বসবাসকালীন সময়ে ফ্ল্যাটের দেওয়ালের স্বাভাবিক রংয়ের ক্ষতিসাধন হইলে বা কোনো ফিটিংস নষ্ট হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা প্রতিস্থাপন করিয়া দিতে বাধ্য থাকিবেন (স্বাভাবিক ব্যবহারজনিত ক্ষয়-ক্ষতি ব্যতীত)।</li>
+                <li contenteditable="true">ফ্ল্যাটের সহিত সরবরাহকৃত আংশিক আসবাবপত্র (যদি থাকে) ব্যবহারে যত্নবান হইবেন এবং কোনো ক্ষতি সাধন হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা সমমানের দ্বারা প্রতিস্থাপন করিয়া দিবেন।</li>
+                <li contenteditable="true">২য় পক্ষকে ভবনের হাউজিং সোসাইটি বা মাল্টিপ্ল্যান কর্তৃপক্ষের প্রণীত নীতিমালা ও নিয়মকানুন মানিয়া চলিতে হইবে।</li>
+                <li contenteditable="true">চুক্তিপত্রের মেয়াদ শেষে ২য় পক্ষ ফ্ল্যাট ছাড়িয়া দেওয়ার সময় সকল প্রকার বিল পরিশোধ করিয়া ১ম পক্ষের নিকট ফ্ল্যাটের দখল বুঝাইয়া দিবেন। ১ম পক্ষ জামানতের টাকা হইতে ফ্ল্যাটের কোনো ক্ষতিসাধন বা বকেয়া বিল সমন্বয় করিয়া বাকি টাকা ২য় পক্ষকে ফেরত প্রদান করিবেন।</li>
+                <li contenteditable="true">এই চুক্তিপত্র উভয় পক্ষের সম্মতিতে সম্পাদিত হইলো এবং উভয় পক্ষ এই শর্তাবলী মানিয়া চলিতে বাধ্য থাকিবেন।</li>
+            </ol>
+
+
+            <div class="grid grid-cols-2 gap-4 sm:gap-10 mt-16 pt-10">
+                 <div class="text-center">
+                     <p class="border-t border-dashed border-gray-400 pt-2">১ম পক্ষের স্বাক্ষর</p>
+                     <p class="text-xs sm:text-sm">(বা প্রতিনিধির স্বাক্ষর)</p>
+                 </div>
+                  <div class="text-center">
+                     <p class="border-t border-dashed border-gray-400 pt-2">২য় পক্ষের স্বাক্ষর</p>
+                 </div>
+            </div>
+
+         
+
+            <!-- Footer placeholder for page number -->
+            <!-- <div class="text-right mt-auto pt-10">পাতা-০২</div> -->
+        </div>
+
+    </div> <!-- End of page-container -->
+
+    <!-- Script inclusion -->
+    <script src="scripts.js"></script>
+
+</body>
+</html>
