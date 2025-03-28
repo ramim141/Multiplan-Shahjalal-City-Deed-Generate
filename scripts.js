@@ -115,39 +115,33 @@ function deleteCondition(buttonElement) {
     }
 }
 
-// 1. Update addCondition to use Tailwind classes
 function addCondition() {
-    const list = document.querySelector('.bengali-list'); // Target the specific OL
+    // Target the list using its specific ID
+    const list = document.getElementById('conditions-list'); // Use getElementById
     if (!list) {
+        console.error("Error: Could not find the conditions list element with ID 'conditions-list'."); // Add error logging
         return; // Exit if the list isn't found
     }
 
+    // Rest of the function remains the same
     const newListItem = document.createElement('li');
     newListItem.setAttribute('contenteditable', 'true');
-    newListItem.setAttribute('tabindex', '0'); // Make focusable
+    newListItem.setAttribute('tabindex', '0');
 
-    // Apply Tailwind classes matching those in template.html for li
-    // Includes layout, relative positioning, padding, editable styles, and print resets
-    newListItem.className = 'mb-3 relative pl-2 block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0 print:mb-2 print:pl-0';
-    newListItem.textContent = '[নতুন শর্ত এখানে লিখুন]'; // Placeholder text
+    newListItem.className = 'relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0';
+    newListItem.textContent = '[নতুন শর্ত এখানে লিখুন]';
 
-    // Create the delete button/icon span using Tailwind classes
     const deleteSpan = document.createElement('span');
-    // Apply Tailwind classes for the delete button (styling, positioning, hover, print visibility)
     deleteSpan.className = 'delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden';
-    deleteSpan.textContent = '❌'; // Use an emoji or icon font
-    deleteSpan.setAttribute('onclick', 'deleteCondition(this)'); // Add the click handler
+    deleteSpan.textContent = '⛔';
+    deleteSpan.setAttribute('onclick', 'deleteCondition(this)');
     deleteSpan.setAttribute('title', 'এই শর্তটি মুছুন');
 
-    // Append the delete span to the new list item
     newListItem.appendChild(deleteSpan);
-
-    // Append the new list item to the list
     list.appendChild(newListItem);
-
-    // Optionally, focus the new item for immediate editing
-    newListItem.focus();
+    newListItem.focus(); // Set focus to the newly added item for immediate editing
 }
+
 
 
 // Main function to display data on template.html

@@ -25,6 +25,10 @@
             list-style-type: none;
             counter-reset: item;
         }
+        .bengali-list > li {
+            counter-increment: item;
+            position: relative;
+        }
         .bengali-list > li::before {
             content: counter(item, bengali) ". ";
             font-weight: bold;
@@ -106,55 +110,57 @@
         </div> <!-- End First A4 Page -->
 
         <!-- Second A4 Page -->
-        <div class="a4-page bg-white shadow-md rounded-md p-4 sm:p-8 md:p-12 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-0 print:p-[1.5cm] print:w-full print:max-w-none print:m-auto print:border-none print:overflow-hidden text-justify">
-            <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 sm:mb-6 print:text-[14px]" contenteditable="true">-: শর্তাবলী :-</h2>
+        <div class="a4-page bg-white shadow-md rounded-md px-12 mt-12 sm:p-8 md:p-12 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-0 print:px-12 print:w-full print:max-w-none print:m-auto print:border-none print:overflow-hidden text-justify">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-extrabold text-center mb-4 sm:mb-6 print:text-[20px] mt-12 print" contenteditable="true">-: শর্তাবলী :-</h2>
 
-            <ol class="space-y-2 sm:space-y-3 pl-8 sm:pl-10 print:space-y-2 print:text-[14px] text-sm sm:text-base">
+            <!-- Added bengali-list class to the ordered list -->
+            <ol id="conditions-list"  class="bengali-list space-y-2 sm:space-y-3 pl-8 sm:pl-10 print:space-y-2 print:text-[14px] text-sm sm:text-base">
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ১। ২য় পক্ষ ফ্ল্যাটের মাসিক ভাড়া <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা প্রতি ইংরেজি মাসের ০১ হইতে ০৭ তারিখের মধ্যে ১ম পক্ষকে পরিশোধ করিবেন।
+                    ২য় পক্ষ ফ্ল্যাটের মাসিক ভাড়া <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা প্রতি ইংরেজি মাসের ০১ হইতে ০৭ তারিখের মধ্যে ১ম পক্ষকে পরিশোধ করিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২। চুক্তিপত্রের মেয়াদকালে যেকোনো পক্ষ ফ্ল্যাট ছাড়িতে বা ছাড়াইতে চাহিলে চুক্তির মেয়াদ শেষ হওয়ার ন্যূনতম ০২ (দুই) মাস পূর্বে লিখিত নোটিশ প্রদান করিবেন।
+                    চুক্তিপত্রের মেয়াদকালে যেকোনো পক্ষ ফ্ল্যাট ছাড়িতে বা ছাড়াইতে চাহিলে চুক্তির মেয়াদ শেষ হওয়ার ন্যূনতম ০২ (দুই) মাস পূর্বে লিখিত নোটিশ প্রদান করিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৩। ফ্ল্যাটের বিদ্যুৎ বিল (প্রি-পেইড মিটার অনুযায়ী), জেনারেটর বিল (যদি থাকে), পানির বিল এবং প্রযোজ্য সার্ভিস চার্জ ২য় পক্ষ যথা সময়ে নিজ দায়িত্বে পরিশোধ করিবেন।
+                    ফ্ল্যাটের বিদ্যুৎ বিল (প্রি-পেইড মিটার অনুযায়ী), জেনারেটর বিল (যদি থাকে), পানির বিল এবং প্রযোজ্য সার্ভিস চার্জ ২য় পক্ষ যথা সময়ে নিজ দায়িত্বে পরিশোধ করিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৪। ১ম পক্ষ বা তাহার মনোনীত প্রতিনিধি যুক্তিসঙ্গত নোটিশ প্রদানপূর্বক ফ্ল্যাট পরিদর্শনের অধিকার সংরক্ষণ করিবেন এবং ২য় পক্ষ পরিদর্শনে সহযোগিতা করিবেন।
+                    ১ম পক্ষ বা তাহার মনোনীত প্রতিনিধি যুক্তিসঙ্গত নোটিশ প্রদানপূর্বক ফ্ল্যাট পরিদর্শনের অধিকার সংরক্ষণ করিবেন এবং ২য় পক্ষ পরিদর্শনে সহযোগিতা করিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৫। ২য় পক্ষ ফ্ল্যাটে বসবাসকালীন সময়ে দেশের প্রচলিত সকল আইনকানুন মানিয়া চলিবেন। অসামাজিক, রাষ্ট্রবিরোধী বা যেকোনো বেআইনী কার্যকলাপ হইতে সম্পূর্ণরূপে বিরত থাকিবেন।
+                    ২য় পক্ষ ফ্ল্যাটে বসবাসকালীন সময়ে দেশের প্রচলিত সকল আইনকানুন মানিয়া চলিবেন। অসামাজিক, রাষ্ট্রবিরোধী বা যেকোনো বেআইনী কার্যকলাপ হইতে সম্পূর্ণরূপে বিরত থাকিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৬। ২য় পক্ষ শুধুমাত্র নিজ পরিবার লইয়া ফ্ল্যাটে বসবাস করিবেন। ১ম পক্ষের লিখিত অনুমতি ব্যতীত ফ্ল্যাটের কোনো অংশ অন্য কাহাকেও সাবলেট বা উপ-ভাড়া প্রদান করিতে পারিবেন না।
+                    ২য় পক্ষ শুধুমাত্র নিজ পরিবার লইয়া ফ্ল্যাটে বসবাস করিবেন। ১ম পক্ষের লিখিত অনুমতি ব্যতীত ফ্ল্যাটের কোনো অংশ অন্য কাহাকেও সাবলেট বা উপ-ভাড়া প্রদান করিতে পারিবেন না।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৭। বসবাসকালীন সময়ে ফ্ল্যাটের দেওয়ালের স্বাভাবিক রংয়ের ক্ষতিসাধন হইলে বা কোনো ফিটিংস নষ্ট হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা প্রতিস্থাপন করিয়া দিতে বাধ্য থাকিবেন (স্বাভাবিক ব্যবহারজনিত ক্ষয়-ক্ষতি ব্যতীত)।
+                    বসবাসকালীন সময়ে ফ্ল্যাটের দেওয়ালের স্বাভাবিক রংয়ের ক্ষতিসাধন হইলে বা কোনো ফিটিংস নষ্ট হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা প্রতিস্থাপন করিয়া দিতে বাধ্য থাকিবেন (স্বাভাবিক ব্যবহারজনিত ক্ষয়-ক্ষতি ব্যতীত)।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৮। ফ্ল্যাটের সহিত সরবরাহকৃত আংশিক আসবাবপত্র (যদি থাকে) ব্যবহারে যত্নবান হইবেন এবং কোনো ক্ষতি সাধন হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা সমমানের দ্বারা প্রতিস্থাপন করিয়া দিবেন।
+                    ফ্ল্যাটের সহিত সরবরাহকৃত আংশিক আসবাবপত্র (যদি থাকে) ব্যবহারে যত্নবান হইবেন এবং কোনো ক্ষতি সাধন হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা সমমানের দ্বারা প্রতিস্থাপন করিয়া দিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ৯। ২য় পক্ষকে ভবনের হাউজিং সোসাইটি বা মাল্টিপ্ল্যান কর্তৃপক্ষের প্রণীত নীতিমালা ও নিয়মকানুন মানিয়া চলিতে হইবে।
+                    ২য় পক্ষকে ভবনের হাউজিং সোসাইটি বা মাল্টিপ্ল্যান কর্তৃপক্ষের প্রণীত নীতিমালা ও নিয়মকানুন মানিয়া চলিতে হইবে।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ১০। চুক্তিপত্রের মেয়াদ শেষে ২য় পক্ষ ফ্ল্যাট ছাড়িয়া দেওয়ার সময় সকল প্রকার বিল পরিশোধ করিয়া ১ম পক্ষের নিকট ফ্ল্যাটের দখল বুঝাইয়া দিবেন। ১ম পক্ষ জামানতের টাকা হইতে ফ্ল্যাটের কোনো ক্ষতিসাধন বা বকেয়া বিল সমন্বয় করিয়া বাকি টাকা ২য় পক্ষকে ফেরত প্রদান করিবেন।
+                    চুক্তিপত্রের মেয়াদ শেষে ২য় পক্ষ ফ্ল্যাট ছাড়িয়া দেওয়ার সময় সকল প্রকার বিল পরিশোধ করিয়া ১ম পক্ষের নিকট ফ্ল্যাটের দখল বুঝাইয়া দিবেন। ১ম পক্ষ জামানতের টাকা হইতে ফ্ল্যাটের কোনো ক্ষতিসাধন বা বকেয়া বিল সমন্বয় করিয়া বাকি টাকা ২য় পক্ষকে ফেরত প্রদান করিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-
-
-                <!-- Add Condition Button -->
-            <button class="add-item-button inline-block mt-4 py-1.5 px-3 bg-emerald-500 text-white border-none rounded cursor-pointer text-sm transition duration-200 hover:bg-emerald-600 print:hidden" onclick="addCondition()">+ নতুন শর্ত যোগ করুন</button>
             </ol>
+
+            <!-- Add Condition Button - Moved outside the list and fixed the onclick attribute -->
+                  <!-- Add Condition Button - No change needed here -->
+                  <button type="button" class="add-item-button inline-block mt-4 py-1.5 px-3 bg-emerald-500 text-white border-none rounded cursor-pointer text-sm transition duration-200 hover:bg-emerald-600 print:hidden" onclick="addCondition()">+ নতুন শর্ত যোগ করুন</button>
+            
            <div class="mt-4 print:mt-6">
                 <p class="mt-4 print:text-[14px] px-4 sm:px-8 md:px-12 text-justify ms-4 sm:ms-8 text-sm sm:text-base" contenteditable="true">
                     এতদ্বার্থে স্বেচ্ছায়, স্বজ্ঞানে, সুস্থ মস্তিষ্কে, আমরা উভয় পক্ষ অত্র ফ্ল্যাট বাড়িটির ভাড়ানামা চুক্তিপত্র 
@@ -166,8 +172,6 @@
             <p class="mb-4 print:text-[14px] text-justify px-4 sm:px-8 md:px-12 text-sm sm:text-base" contenteditable="true">
                 ভবনের নাম <span id="flat-info-schedule" class="text-amber-700 print:text-black">[ভবনের নাম, ফ্ল্যাট নং]</span> মাল্টিপ্ল্যান শাহজাজাল সিটি, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা-শাহপরান, জেলা-সিলেট।
             </p>
-
-            
 
             <!-- Signatures -->
             <div class="gap-6 sm:gap-10 mt-8 sm:mt-12 md:mt-16 pt-6 sm:pt-8 md:pt-10 print:mt-10 print:pt-6">
@@ -181,6 +185,7 @@
         </div> <!-- End Second A4 Page -->
     </div> <!-- End page-container -->
 
+    <!-- Make sure the script is loaded correctly -->
     <script src="scripts.js"></script>
 </body>
 </html>
