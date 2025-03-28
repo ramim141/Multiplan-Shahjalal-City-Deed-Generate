@@ -8,7 +8,7 @@ const owners = [
         displayName: 'নুর মোহাম্মদ চৌধুরী পিয়ারু (পক্ষে রুহুল আমিন)',
         fullName: 'নুর মোহাম্মদ চৌধুরী পিয়ারু',
         ownerContact: '+৪৪৭৮৮৬০৯৮২৩০', // Specific field for owner's direct contact
-        ownerAddress: 'ফ্ল্যাট নং- তমাল ২/ডি, মাল্টিপ্ল্যান শাহজালাল সিটি, তমাল ভবন, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা- শাহপরান, জেলা- সিলেট', // Specific field for owner's address
+        ownerAddress: 'ফ্ল্যাট নং- তমাল ৩/এ, মাল্টিপ্ল্যান শাহজালাল সিটি, তমাল ভবন, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা- শাহপরান, জেলা- সিলেট', // Specific field for owner's address
         representative: {
             exists: true,
             name: 'রুহুল আমিন',
@@ -172,7 +172,7 @@ function displayData() {
         const ownerSectionEl = document.getElementById('owner-section');
         if (ownerSectionEl && selectedOwner) {
             // Use Tailwind classes for bolding within the string if needed, or rely on parent element styles
-            let ownerHtml = `<strong class="font-semibold">১ম পক্ষ / মালিক পক্ষ:</strong> নামঃ ${selectedOwner.fullName}`;
+            let ownerHtml = `<strong class="font-semibold"></strong> নামঃ ${selectedOwner.fullName}`;
              if (selectedOwner.ownerContact && selectedOwner.ownerContact !== 'N/A') {
                 ownerHtml += `, (মোবাইল- ${convertToBengaliNumerals(selectedOwner.ownerContact)})`;
             }
@@ -206,7 +206,7 @@ function displayData() {
         // --- Populate Flat Information ---
         const flatInfoEl = document.getElementById('flat-info');
         if (flatInfoEl) {
-            flatInfoEl.textContent = `ভবনের নাম- ${getParam('flat')}, ফ্ল্যাট নং- ${convertToBengaliNumerals(getParam('unit'))}`;
+            flatInfoEl.textContent = `${getParam('flat')},  ফ্ল্যাট নং- ${convertToBengaliNumerals(getParam('unit'))}`;
         }
 
         // --- Populate Tenant Information ---
