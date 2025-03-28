@@ -5,23 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ভাড়াটিয়া ফরম - চুক্তিপত্র</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Adorsho Lipi font -->
     <link rel="stylesheet" href="https://fonts.maateen.me/adorsho-lipi/font.css">
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
           theme: {
             extend: {
               fontFamily: {
-                'bengali': ['AdorshoLipi', 'sans-serif'], // Use exact font name as per CSS
+                'bengali': ['AdorshoLipi', 'sans-serif'],
               },
             }
           }
         }
     </script>
-    <!-- Minimal Style Block for Counters and Print Setup -->
     <style>
-        /* Bengali List Counter */
         .bengali-list {
             list-style-type: none;
             counter-reset: item;
@@ -35,23 +31,21 @@
             font-weight: bold;
             display: inline-block;
             position: absolute;
-            color: #4b5563; /* gray-700 */
+            color: #4b5563;
             text-align: right;
             left: -2.5em;
             width: 2em;
         }
         @media print {
             .bengali-list > li::before {
-                color: #000000; /* black for print */
+                color: #000000;
             }
         }
-
-        /* Base Print Styles & Page Setup */
         @media print {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                font-family: 'AdorshoLipi', sans-serif; /* Exact name from font CSS */
+                font-family: 'AdorshoLipi', sans-serif;
             }
             .a4-page {
                 width: 21cm;
@@ -100,8 +94,10 @@
 
             <!-- Tenant Section -->
             <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true">
-                <strong class="font-semibold"></strong> নামঃ <span id="tenant-name" class="text-amber-700 print:text-black"></span>, ভোটার আইডি নং- <span id="voter-id" class="text-amber-700 print:text-black"></span>। পিতাঃ <span id="father-name" class="text-amber-700 print:text-black"></span>, মাতাঃ <span id="mother-name" class="text-amber-700 print:text-black"></span>, 
-                স্থায়ী ঠিকানাঃ <span id="tenant-address" class="text-amber-700 print:text-black"></span>। মোবাইল নাম্বারঃ <span id="mobile" class="text-amber-700 print:text-black"></span>।
+                <strong class="font-semibold"></strong> নামঃ <span id="tenant-name" class="text-amber-700 print:text-black"></span>, ভোটার আইডি নং- <span id="voter-id" class="text-amber-700 print:text-black"></span>, পিতাঃ <span id="father-name" class="text-amber-700 print:text-black"></span>, মাতাঃ <span id="mother-name" class="text-amber-700 print:text-black"></span>, 
+                ঠিকানাঃ বাসা/হোল্ডিং- <span id="holding-number" class="text-amber-700 print:text-black"></span>, গ্রাম/রাস্তা- <span id="village" class="text-amber-700 print:text-black"></span>, ডাকঘর- <span id="post-office" class="text-amber-700 print:text-black"></span> - <span id="post-code" class="text-amber-700 print:text-black"></span>, 
+                সদর- <span id="sadar" class="text-amber-700 print:text-black"></span>, পৌরসভা- <span id="pourosoba" class="text-amber-700 print:text-black"></span>, জেলা- <span id="district" class="text-amber-700 print:text-black"></span>, বিভাগ- <span id="division" class="text-amber-700 print:text-black"></span>। 
+                মোবাইল নাম্বারঃ <span id="mobile" class="text-amber-700 print:text-black"></span>।
             </p>
             <div class="text-right mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12 text-xs sm:text-sm print:text-[14px]">…………………………………………<br/>২য় পক্ষ/ ভাড়াটিয়া পক্ষের স্বাক্ষর</div>
 
