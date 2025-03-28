@@ -66,7 +66,9 @@ const owners = [
 
 // Function to convert English digits (0-9) to Bengali digits (০-৯) in a string
 function convertToBengaliNumerals(str) {
-    if (str === null || str === undefined) return '';
+    if (str === null || str === undefined) {
+        return '';
+    }
     const strValue = String(str);
     const bengaliDigits = {'0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'};
     return strValue.replace(/[0-9]/g, digit => bengaliDigits[digit] || digit);
@@ -75,7 +77,9 @@ function convertToBengaliNumerals(str) {
 // Helper function to convert number to Bengali words
 function convertToBengaliWords(numStr) {
     const num = parseInt(numStr, 10);
-    if (isNaN(num)) return '';
+    if (isNaN(num)) {
+        return '';
+    }
     // Ensure this map is sufficient for your needs or use a library
     const wordsMap = { 0: 'শূন্য', 1: 'এক', 2: 'দুই', 3: 'তিন', 4: 'চার', 5: 'পাঁচ', 6: 'ছয়', 7: 'সাত', 8: 'আট', 9: 'নয়', 10: 'দশ', 100: 'একশত', 1000: 'এক হাজার', 10000: 'দশ হাজার', 15000: 'পনেরো হাজার', 100000: 'এক লক্ষ' };
     // Basic fallback for numbers not in map
@@ -87,7 +91,9 @@ function populateDuplicates() {
    try {
         const advanceDateVal = document.getElementById('advance-date')?.textContent;
         const advanceDateInlineEl = document.getElementById('advance-date-inline');
-        if (advanceDateInlineEl && advanceDateVal) advanceDateInlineEl.textContent = advanceDateVal;
+        if (advanceDateInlineEl && advanceDateVal) {
+            advanceDateInlineEl.textContent = advanceDateVal;
+        }
 
         const flatInfoVal = document.getElementById('flat-info')?.textContent;
         const flatInfoScheduleEl = document.getElementById('flat-info-schedule');
@@ -112,7 +118,9 @@ function deleteCondition(buttonElement) {
 // 1. Update addCondition to use Tailwind classes
 function addCondition() {
     const list = document.querySelector('.bengali-list'); // Target the specific OL
-    if (!list) return; // Exit if the list isn't found
+    if (!list) {
+        return; // Exit if the list isn't found
+    }
 
     const newListItem = document.createElement('li');
     newListItem.setAttribute('contenteditable', 'true');
@@ -150,12 +158,18 @@ function displayData() {
 
         // 3. Ensure Date Formatting is correct (DD/MM/YYYY)
         const formatDate = (dateString) => {
-             if (!dateString) return '';
+             if (!dateString) {
+                 return '';
+             }
              try {
                  // Basic check for yyyy-mm-dd format
-                 if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) return dateString; // Return original if not yyyy-mm-dd
+                 if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+                     return dateString; // Return original if not yyyy-mm-dd
+                 }
                  const date = new Date(dateString);
-                 if (isNaN(date.getTime())) return dateString; // Invalid date
+                 if (isNaN(date.getTime())) {
+                     return dateString; // Invalid date
+                 }
                  // Format to DD/MM/YYYY
                  const day = String(date.getDate()).padStart(2, '0');
                  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
