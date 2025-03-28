@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ভাড়াটিয়া ফরম - চুক্তিপত্র</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Load Adorsho Lipi font -->
+    <link rel="stylesheet" href="https://fonts.maateen.me/adorsho-lipi/font.css">
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
           theme: {
             extend: {
               fontFamily: {
-                'sans': ['Noto Sans Bengali', 'sans-serif'],
+                'bengali': ['AdorshoLipi', 'sans-serif'], // Use exact font name as per CSS
               },
             }
           }
@@ -50,6 +51,7 @@
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+                font-family: 'AdorshoLipi', sans-serif; /* Exact name from font CSS */
             }
             .a4-page {
                 width: 21cm;
@@ -66,7 +68,7 @@
         }
     </style>
 </head>
-<body onload="displayData()" class="bg-gray-100 p-4 sm:p-6 md:p-8 font-sans text-sm leading-relaxed print:bg-white print:p-0 print:m-0">
+<body onload="displayData()" class="font-bengali bg-gray-100 p-4 sm:p-6 md:p-8 text-sm leading-relaxed print:bg-white print:p-0 print:m-0">
     <div class="page-container w-full max-w-4xl mx-auto my-5 print:max-w-none print:my-0">
         <!-- Control Buttons -->
         <div class="text-center mb-4 p-4 bg-white rounded shadow print:hidden">
@@ -87,7 +89,7 @@
 
         <!-- First A4 Page -->
         <div class="a4-page bg-white shadow-md rounded-md p-6 sm:p-8 md:p-12 mb-8 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-4 print:px-24 print:w-full print:max-w-none print:mx-auto print:border-none print:overflow-hidden text-justify">
-            <h1 class="text-2xl sm:text-2xl md:text-3xl font-bold text-center mb-4 md:mt-8 print:mt-16 print:text-3xl" contenteditable="true">বিসমিল্লাহির রাহমানির রাহিম</h1>
+            <h1 class="text-2xl sm:text-2xl md:text-3xl font-extrabold text-center mb-4 md:mt-8 print:mt-16 print:text-3xl" contenteditable="true">বিসমিল্লাহির রাহমানির রাহিম</h1>
             <h2 class="text-xl sm:text-xl md:text-2xl underline decoration-1 underline-offset-2 text-center mb-6 print:text-2xl" contenteditable="true">ফ্ল্যাট ভাড়ানামা চুক্তিপত্র</h2>
 
             <!-- Owner Section -->
@@ -98,8 +100,8 @@
 
             <!-- Tenant Section -->
             <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true">
-                <strong class="font-semibold"></strong> নামঃ <span id="tenant-name" class="text-amber-700 print:text-black"></span>, পিতাঃ <span id="father-name" class="text-amber-700 print:text-black"></span>, মাতাঃ <span id="mother-name" class="text-amber-700 print:text-black"></span>, ভোটার আইডি নং- <span id="voter-id" class="text-amber-700 print:text-black"></span>, মোবাইল নাম্বারঃ <span id="mobile" class="text-amber-700 print:text-black"></span>। <br/>
-                স্থায়ী ঠিকানাঃ <span id="tenant-address" class="text-amber-700 print:text-black"></span>।
+                <strong class="font-semibold"></strong> নামঃ <span id="tenant-name" class="text-amber-700 print:text-black"></span>, ভোটার আইডি নং- <span id="voter-id" class="text-amber-700 print:text-black"></span>। পিতাঃ <span id="father-name" class="text-amber-700 print:text-black"></span>, মাতাঃ <span id="mother-name" class="text-amber-700 print:text-black"></span>, 
+                স্থায়ী ঠিকানাঃ <span id="tenant-address" class="text-amber-700 print:text-black"></span>। মোবাইল নাম্বারঃ <span id="mobile" class="text-amber-700 print:text-black"></span>।
             </p>
             <div class="text-right mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12 text-xs sm:text-sm print:text-[14px]">…………………………………………<br/>২য় পক্ষ/ ভাড়াটিয়া পক্ষের স্বাক্ষর</div>
 
@@ -111,10 +113,10 @@
 
         <!-- Second A4 Page -->
         <div class="a4-page bg-white shadow-md rounded-md px-12 mt-12 sm:p-8 md:p-12 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-0 print:px-12 print:w-full print:max-w-none print:m-auto print:border-none print:overflow-hidden text-justify">
-            <h2 class="text-lg sm:text-xl md:text-2xl font-extrabold text-center mb-4 sm:mb-6 print:text-[20px] mt-12 print" contenteditable="true">-: শর্তাবলী :-</h2>
+            <h2 class="text-lg sm:text-xl md:text-2xl font-extrabold text-center mb-4 sm:mb-6 print:text-[20px] mt-12" contenteditable="true">-: শর্তাবলী :-</h2>
 
-            <!-- Added bengali-list class to the ordered list -->
-            <ol id="conditions-list"  class="bengali-list space-y-2 sm:space-y-3 pl-8 sm:pl-10 print:space-y-2 print:text-[14px] text-sm sm:text-base">
+            <!-- Conditions List -->
+            <ol id="conditions-list" class="bengali-list space-y-2 sm:space-y-3 pl-8 sm:pl-10 print:space-y-2 print:text-[14px] text-sm sm:text-base">
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
                     ২য় পক্ষ ফ্ল্যাটের মাসিক ভাড়া <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা প্রতি ইংরেজি মাসের ০১ হইতে ০৭ তারিখের মধ্যে ১ম পক্ষকে পরিশোধ করিবেন।
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
@@ -157,16 +159,15 @@
                 </li>
             </ol>
 
-            <!-- Add Condition Button - Moved outside the list and fixed the onclick attribute -->
-                  <!-- Add Condition Button - No change needed here -->
-                  <button type="button" class="add-item-button inline-block mt-4 py-1.5 px-3 bg-emerald-500 text-white border-none rounded cursor-pointer text-sm transition duration-200 hover:bg-emerald-600 print:hidden" onclick="addCondition()">+ নতুন শর্ত যোগ করুন</button>
+            <!-- Add Condition Button -->
+            <button type="button" class="add-item-button inline-block mt-4 py-1.5 px-3 bg-emerald-500 text-white border-none rounded cursor-pointer text-sm transition duration-200 hover:bg-emerald-600 print:hidden" onclick="addCondition()">+ নতুন শর্ত যোগ করুন</button>
             
-           <div class="mt-4 print:mt-6">
+            <div class="mt-4 print:mt-6">
                 <p class="mt-4 print:text-[14px] px-4 sm:px-8 md:px-12 text-justify ms-4 sm:ms-8 text-sm sm:text-base" contenteditable="true">
                     এতদ্বার্থে স্বেচ্ছায়, স্বজ্ঞানে, সুস্থ মস্তিষ্কে, আমরা উভয় পক্ষ অত্র ফ্ল্যাট বাড়িটির ভাড়ানামা চুক্তিপত্র 
                 </p>
                 <p class="px-4 sm:px-8 md:px-12 text-sm sm:text-base">পড়িয়া ও বুঝিয়া নিম্নে নিজ নিজ স্বাক্ষর দ্বারা সম্পাদন করিলাম।</p>
-           </div>
+            </div>
 
             <h3 class="text-base sm:text-[14px] mt-6 mb-2 underline decoration-1 underline-offset-2 print:text-base text-center" contenteditable="true">তপশীল</h3>
             <p class="mb-4 print:text-[14px] text-justify px-4 sm:px-8 md:px-12 text-sm sm:text-base" contenteditable="true">
@@ -185,7 +186,6 @@
         </div> <!-- End Second A4 Page -->
     </div> <!-- End page-container -->
 
-    <!-- Make sure the script is loaded correctly -->
     <script src="scripts.js"></script>
 </body>
 </html>
