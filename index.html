@@ -51,12 +51,79 @@
                 <label for="unit" class="block text-gray-700 mb-1">ইউনিট</label>
                 <select id="unit" name="unit" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
                     <option value="">ইউনিট নির্বাচন করুন</option>
-                    <option>৩/এ</option> <option>২/এ</option> <option>১/এ</option>
-                    <option>৩/বি</option> <option>২/বি</option> <option>১/বি</option>
-                    <option>৩/সি</option> <option>২/সি</option> <option>১/সি</option>
+                    <option>২/এ</option>
+                    <option>২/বি</option>
+                    <option>২/সি</option>
+                    <option>২/ডি</option>
+                    <option>৩/এ</option> 
+                    <option>৩/বি</option> 
+                    <option>৩/সি</option> 
                     <option>৩/ডি</option>
+                    <option>৪/এ</option>
+                    <option>৪/বি</option>
+                    <option>৪/সি</option>
+                    <option>৪/ডি</option>
+                    <option>৪/ই</option>
+                    <option>৪/এফ</option>
+                    <option>৪/জি</option>
+                    <option>৪/এইচ</option>
+                    <option>৪/আই</option>
+                    
+                    <option>৫/এ</option>
+                    <option>৫/বি</option>
+                    <option>৫/সি</option>
+                    <option>৫/ডি</option>
+                    <option>৫/ই</option>
+                    <option>৫/এফ</option>
+                    <option>৫/জি</option>
+                    <option>৫/এইচ</option>
+                    <option>৫/আই</option>
+                    <option>৫/জে</option>
+
+                    <option>৬/এ</option>
+                    <option>৬/বি</option>
+                    <option>৬/সি</option>
+                    <option>৬/ডি</option>
+                    <option>৬/ই</option>
+                    <option>৬/এফ</option>
+                    <option>৬/জি</option>
+                    <option>৬/এইচ</option>
+                    <option>৬/আই</option>
+                
+                    <option>৭/এ</option>
+                    <option>৭/বি</option>
+                    <option>৭/সি</option>
+                    <option>৭/ডি</option>
+                    <option>৭/ই</option>
+                    <option>৭/এফ</option>
+                    <option>৭/জি</option>
+                    <option>৭/এইচ</option>
+                    <option>৭/আই</option>
+                    <option>৭/জে</option>
+                    
+
+                 
                 </select>
             </div>
+            <div>
+                <label for="unit" class="block text-gray-700 mb-1">ফ্ল্যাট টাইপ</label>
+                <select name="flat_type" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+                    <option value="">ফ্ল্যাট টাইপ নির্বাচন করুন</option>
+                    <option value="1bhk">ফার্নিচারসহ</option>
+                    <option value="2bhk">ফার্নিচার ছাড়া</option> 
+                </select>
+            </div>
+            <div>
+                <label for="unit" class="block text-gray-700 mb-1">পার্কিং</label>
+                <select name="parking" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+                    <option value="">পার্কিং নির্বাচন করুন</option>
+                    <option value="yes">কার পার্কিং সহ</option>
+                    <option value="no">কার পার্কিং ছাড়া</option>
+                    <option value="partial">আংশিক কার পার্কিং</option> 
+
+                </select>
+            </div>
+           
         </div>
 
         <!-- Tenant Info -->
@@ -87,14 +154,14 @@
         <!-- Address -->
         <h2 class="text-lg sm:text-xl font-semibold mt-6 mb-4 border-b pb-2">ঠিকানা (ভাড়াটিয়ার স্থায়ী)</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <input type="text" name="village" placeholder="গ্রাম/রাস্তা" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="holding_number" placeholder="বাসা/হোল্ডিং" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="post_office" placeholder="ডাকঘর" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="post_code" placeholder="পোস্ট কোড" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="sadar" placeholder="সদর" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="pourosoba" placeholder="পৌরসভা" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="district" placeholder="জেলা" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
-            <input type="text" name="division" placeholder="বিভাগ" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="village" placeholder="গ্রাম/রাস্তা(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="holding_number" placeholder="বাসা/হোল্ডিং(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="post_office" placeholder="ডাকঘর(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="post_code" placeholder="পোস্ট কোড(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="sadar" placeholder="সদর(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="pourosoba" placeholder="পৌরসভা(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="district" placeholder="জেলা(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
+            <input type="text" name="division" placeholder="বিভাগ(যদি থাকে)" class="p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none">
         </div>
 
         <!-- Rental Info -->
