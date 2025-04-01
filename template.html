@@ -95,8 +95,8 @@
             <!-- Tenant Section -->
             <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true">
                 <strong class="font-semibold"></strong> নামঃ <span id="tenant-name" class="text-amber-700 print:text-black"></span>, ভোটার আইডি নং- <span id="voter-id" class="text-amber-700 print:text-black"></span>, পিতাঃ <span id="father-name" class="text-amber-700 print:text-black"></span>, মাতাঃ <span id="mother-name" class="text-amber-700 print:text-black"></span>, 
-                ঠিকানাঃ <span id="holding-number" class="text-amber-700 print:text-black"></span>, <span id="village" class="text-amber-700 print:text-black"></span>, ডাকঘর- <span id="post-office" class="text-amber-700 print:text-black"></span> - <span id="post-code" class="text-amber-700 print:text-black"></span>, 
-                <span id="sadar" class="text-amber-700 print:text-black"></span>,<span id="pourosoba" class="text-amber-700 print:text-black"></span> <span id="district" class="text-amber-700 print:text-black"></span>, <span id="division" class="text-amber-700 print:text-black"></span>। 
+                ঠিকানাঃ <span id="holding-number" class="text-amber-700 print:text-black"></span>, <span id="village" class="text-amber-700 print:text-black"></span>, ডাকঘর- <span id="post-office" class="text-amber-700 print:text-black"></span>,
+                <span id="sadar" class="text-amber-700 print:text-black"></span>, <span id="pourosoba" class="text-amber-700 print:text-black"></span>, <span id="zila" class="text-amber-700 print:text-black"></span>, <span id="division" class="text-amber-700 print:text-black"></span>।
                 মোবাইল নাম্বারঃ <span id="mobile" class="text-amber-700 print:text-black"></span>।
             </p>
             <div class="text-right mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12 text-xs sm:text-sm print:text-[14px]">…………………………………………<br/>২য় পক্ষ/ ভাড়াটিয়া পক্ষের স্বাক্ষর</div>
@@ -105,52 +105,44 @@
             <p id="agreement-preamble" class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true">
                 <span class="text-amber-700 print:text-black">[চুক্তির ভূমিকা এখানে প্রদর্শিত হবে]</span>
             </p>
-        </div> <!-- End First A4 Page -->
+        </div>
 
         <!-- Second A4 Page -->
-        <div class="a4-page bg-white shadow-md rounded-md px-4 sm:px-8 lg:px-12  mt-12 md:p-12 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-0 print:px-20 print:w-full print:max-w-none print:m-auto print:border-none print:overflow-hidden text-justify">
+        <div class="a4-page bg-white shadow-md rounded-md px-4 sm:px-8 lg:px-12 mt-12 md:p-12 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-0 print:px-20 print:w-full print:max-w-none print:m-auto print:border-none print:overflow-hidden text-justify">
             <h2 class="sm:pt-12 text-2xl sm:text-xl md:text-2xl font-extrabold text-center mb-4 sm:mb-6 print:text-[20px] print:mt-8 print:font-extra-bold">-: শর্তাবলী :-</h2>
 
             <!-- Conditions List -->
             <ol id="conditions-list" class="bengali-list space-y-2 sm:space-y-3 pl-8 sm:pl-10 print:space-y-2 print:text-[14px] text-sm sm:text-base">
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২য় পক্ষ ফ্ল্যাটের মাসিক ভাড়া <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা প্রতি ইংরেজি মাসের ০১ হইতে ০৭ তারিখের মধ্যে ১ম পক্ষকে পরিশোধ করিবেন।
+                    ফ্ল্যাটের ভাড়ার অবশিষ্ট <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা ফ্ল্যাটের চাবি নেওয়ার সময় ভাড়াটিয়া/২য় পক্ষ, ১ম পক্ষের/মালিক পক্ষের নিকট পরিশোধ করতে বাধ্য থাকিবেন।             
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    চুক্তিপত্রের মেয়াদকালে যেকোনো পক্ষ ফ্ল্যাট ছাড়িতে বা ছাড়াইতে চাহিলে চুক্তির মেয়াদ শেষ হওয়ার ন্যূনতম ০২ (দুই) মাস পূর্বে লিখিত নোটিশ প্রদান করিবেন।
+                    কোনো কারণ বশত ভাড়া বাতিল হলে ভাড়াটিয়া বা ২য় পক্ষকে এক মাসের ভাড়া পরিশোধ করতে বাধ্য থাকিবেন এবং ফ্ল্যাট বাড়িটি ছাড়িয়ে দিলে বা ছাড়াইয়া নিলে চুক্তিপত্র বাতিল হইবে।              
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ফ্ল্যাটের বিদ্যুৎ বিল (প্রি-পেইড মিটার অনুযায়ী), জেনারেটর বিল (যদি থাকে), পানির বিল এবং প্রযোজ্য সার্ভিস চার্জ ২য় পক্ষ যথা সময়ে নিজ দায়িত্বে পরিশোধ করিবেন।
+                    গ্যাস সিলিন্ডার (১২.৫ কেজি ২টি), পানির বিল, জেনারেটর বিল, সার্ভিস বা মেইনটেইন্যান্স বিল, <span id="gas-responsibility" class="text-amber-700 print:text-black">[১ম পক্ষ / ২য় পক্ষ]</span> যথাসময়ে মাল্টিপ্ল্যান লিমিটেড কর্তৃপক্ষের অফিসে প্রদান করতে বাধ্য থাকিবেন। বিদ্যুৎ বিল <span id="electricity-responsibility" class="text-amber-700 print:text-black">[১ম পক্ষ / ২য় পক্ষ]</span> প্রদান করিতে বাধ্য থাকিবেন। ভাড়াটিয়া যদি ইন্টারনেট ব্যবহার করেন, তাহলে ইন্টারনেট বিল ২য় পক্ষ/ভাড়াটিয়া প্রদান করিতে বাধ্য থাকিবেন। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ১ম পক্ষ বা তাহার মনোনীত প্রতিনিধি যুক্তিসঙ্গত নোটিশ প্রদানপূর্বক ফ্ল্যাট পরিদর্শনের অধিকার সংরক্ষণ করিবেন এবং ২য় পক্ষ পরিদর্শনে সহযোগিতা করিবেন।
+                    ভাড়াকৃত ফ্ল্যাট বাড়িটির মেয়াদ পর্যন্ত আপনি ২য় পক্ষের হেফাজতে থাকিবে, প্রয়োজনে পরবর্তী মাসের ভাড়ার জন্য ভাড়াটিয়া আসলে ২য় পক্ষ ফ্ল্যাট দেখাতে বাধ্য থাকিবেন। তবে ১ম পক্ষ/মালিক পক্ষ ভাড়াটিয়ার সাথে থাকিবেন।     
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২য় পক্ষ ফ্ল্যাটে বসবাসকালীন সময়ে দেশের প্রচলিত সকল আইনকানুন মানিয়া চলিবেন। অসামাজিক, রাষ্ট্রবিরোধী বা যেকোনো বেআইনী কার্যকলাপ হইতে সম্পূর্ণরূপে বিরত থাকিবেন।
+                    আপনি ২য় পক্ষ সরকারের প্রচলিত আইন বা সামাজিক অথবা মাল্টিপ্ল্যান কর্তৃপক্ষের নিয়ম কানুন এর বর্হিভূত কোন প্রকার কাজ করিতে পারিবেন না। কোন ধরনের অন্যায় অসামাজিক কার্যকলাপের জন্য আপনি ২য় পক্ষ একক ভাবে দায়ী থাকিবেন। কোন অবস্থাতেই ১ম পক্ষকে/মালিক পক্ষকে জড়ানো যাইবে না। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২য় পক্ষ শুধুমাত্র নিজ পরিবার লইয়া ফ্ল্যাটে বসবাস করিবেন। ১ম পক্ষের লিখিত অনুমতি ব্যতীত ফ্ল্যাটের কোনো অংশ অন্য কাহাকেও সাবলেট বা উপ-ভাড়া প্রদান করিতে পারিবেন না।
+                    ২য় পক্ষ ভাড়া গ্রহীতা শুধুমাত্র নিজের পরিবারের লোকজন নিয়া বসবাস করিতে পারিবেন। কোন অবস্থাতেই বাহিরের কোন লোক বসবাসের জন্যে উক্ত ফ্ল্যাট বাড়িটি ব্যবহার করিতে পারিবেন না। এইরূপ কোন কিছু প্রকাশ পাইলে সার্বিকভাবে ২য় পক্ষ নিজে দায়ী থাকিবেন এবং ১ম পক্ষ বিনা নোটিশে ২য় পক্ষকে ফ্ল্যাট বাড়িটি ছাড়িতে বাধ্য করিতে পারিবেন। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    বসবাসকালীন সময়ে ফ্ল্যাটের দেওয়ালের স্বাভাবিক রংয়ের ক্ষতিসাধন হইলে বা কোনো ফিটিংস নষ্ট হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা প্রতিস্থাপন করিয়া দিতে বাধ্য থাকিবেন (স্বাভাবিক ব্যবহারজনিত ক্ষয়-ক্ষতি ব্যতীত)।
+                    ২য় পক্ষ ভাড়াকৃত ফ্ল্যাট বাড়িটি বা ফ্ল্যাটের কোন অংশ কাহারো নিকট পুনরায় ভাড়া (সাবলেট) দিতে পারিবেন না। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
                 <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ফ্ল্যাটের সহিত সরবরাহকৃত আংশিক আসবাবপত্র (যদি থাকে) ব্যবহারে যত্নবান হইবেন এবং কোনো ক্ষতি সাধন হইলে ২য় পক্ষ নিজ খরচে তাহা মেরামত বা সমমানের দ্বারা প্রতিস্থাপন করিয়া দিবেন।
-                    <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
-                </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২য় পক্ষকে ভবনের হাউজিং সোসাইটি বা মাল্টিপ্ল্যান কর্তৃপক্ষের প্রণীত নীতিমালা ও নিয়মকানুন মানিয়া চলিতে হইবে।
-                    <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
-                </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    চুক্তিপত্রের মেয়াদ শেষে ২য় পক্ষ ফ্ল্যাট ছাড়িয়া দেওয়ার সময় সকল প্রকার বিল পরিশোধ করিয়া ১ম পক্ষের নিকট ফ্ল্যাটের দখল বুঝাইয়া দিবেন। ১ম পক্ষ জামানতের টাকা হইতে ফ্ল্যাটের কোনো ক্ষতিসাধন বা বকেয়া বিল সমন্বয় করিয়া বাকি টাকা ২য় পক্ষকে ফেরত প্রদান করিবেন।
+                    ফ্ল্যাটের রং, ভাঙ্গাচোরা, দেয়ালের মধ্যে আঠা অথবা কস্টিপ দিয়ে ফ্ল্যাটের কোন অংশ নষ্ট করিলে, ভাড়াটিয়া/২য় পক্ষ নিজ খরচে মেরামত করতে বাধ্য থাকিবেন এবং যেহেতু এটি একটি আবাসিক টাওয়ার সেহেতু ফ্ল্যাটের মধ্যে কোন ধরনের গায়ে হলুদ, সামাজিক অথবা রাজনৈতিক অনুষ্টান করা যাবে না। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
             </ol>
@@ -167,7 +159,7 @@
 
             <h3 class="text-base sm:text-[14px] mt-6 mb-2 underline decoration-1 underline-offset-2 print:text-base text-center" contenteditable="true">তপশীল</h3>
             <p class="mb-4 print:text-[14px] text-justify px-4 sm:px-8 md:px-12 text-sm sm:text-base" contenteditable="true">
-                ভবনের নাম <span id="flat-info-schedule" class="text-amber-700 print:text-black">[ভবনের নাম, ফ্ল্যাট নং]</span> মাল্টিপ্ল্যান শাহজাজাল সিটি, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা-শাহপরান, জেলা-সিলেট।
+                ভবনের নাম <span id="flat-info" class="text-amber-700 print:text-black"></span> মাল্টিপ্ল্যান শাহজাজাল সিটি, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা-শাহপরান, জেলা-সিলেট।
             </p>
 
             <!-- Signatures -->
@@ -179,9 +171,8 @@
                     <p class="pt-8 sm:pt-12">২য় পক্ষের স্বাক্ষর</p>
                 </div>
             </div>
-        </div> <!-- End Second A4 Page -->
-    </div> <!-- End page-container -->
-
+        </div>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
