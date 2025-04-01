@@ -6,13 +6,30 @@
     <title>ভাড়াটিয়া ফরম - চুক্তিপত্র</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.maateen.me/adorsho-lipi/font.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
           theme: {
             extend: {
               fontFamily: {
+                'sans': ['Noto Sans Bengali', 'sans-serif'],
                 'bengali': ['AdorshoLipi', 'sans-serif'],
               },
+              colors: {
+                'primary': {
+                  DEFAULT: '#f97316',
+                  '50': '#fff7ed',
+                  '100': '#ffedd5',
+                  '200': '#fed7aa',
+                  '300': '#fdba74',
+                  '400': '#fb923c',
+                  '500': '#f97316',
+                  '600': '#ea580c',
+                  '700': '#c2410c',
+                  '800': '#9a3412',
+                  '900': '#7c2d12',
+                }
+              }
             }
           }
         }
@@ -25,6 +42,7 @@
         .bengali-list > li {
             counter-increment: item;
             position: relative;
+            margin-bottom: 0.5rem;
         }
         .bengali-list > li::before {
             content: counter(item, bengali) ". ";
@@ -40,8 +58,6 @@
             .bengali-list > li::before {
                 color: #000000;
             }
-        }
-        @media print {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
@@ -51,14 +67,82 @@
                 width: 21cm;
                 min-height: 29.7cm;
                 page-break-after: always;
+                padding: 2cm;
+                margin: 0;
             }
             .a4-page:last-of-type {
                 page-break-after: auto;
+            }
+            .print-hidden {
+                display: none !important;
+            }
+            .print-break-inside-avoid {
+                break-inside: avoid;
             }
         }
         @page {
             size: A4;
             margin: 0;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+        
+        /* Editable content styles */
+        [contenteditable="true"] {
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            border-radius: 0.25rem;
+        }
+        [contenteditable="true"]:hover {
+            background-color: rgba(249, 115, 22, 0.1);
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+        [contenteditable="true"]:focus {
+            outline: none;
+            background-color: rgba(249, 115, 22, 0.1);
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.25);
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
@@ -66,34 +150,56 @@
     <div class="page-container w-full max-w-4xl mx-auto my-5 print:max-w-none print:my-0">
         <!-- Control Buttons -->
         <div class="text-center mb-4 p-4 bg-white rounded shadow print:hidden">
-            <button onclick="window.print()" class="bg-orange-500 text-white py-2 px-5 rounded hover:bg-orange-600 transition duration-200 mb-2 sm:mb-0 sm:mr-2 text-sm inline-flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
-                </svg>
-                প্রিন্ট / PDF
-            </button>
-            <a href="index.html" class="bg-gray-500 text-white py-2 px-5 rounded hover:bg-gray-600 transition duration-200 text-sm inline-flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                ফর্মে ফিরে যান
-            </a>
-            <p class="mt-2 text-xs text-gray-600">নোট: চুক্তিপত্রের যেকোনো লাইনে ক্লিক করে সম্পাদনা করুন। শর্তাবলী যোগ/বাদ দিতে পারবেন।</p>
+            <div class="flex flex-wrap justify-center gap-2 mb-3">
+                <button onclick="window.print()" class="bg-primary-500 text-white py-2 px-5 rounded hover:bg-primary-600 transition duration-200 text-sm inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
+                    </svg>
+                    প্রিন্ট / PDF
+                </button>
+                <button onclick="saveAsPDF()" class="bg-blue-500 text-white py-2 px-5 rounded hover:bg-blue-600 transition duration-200 text-sm inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    PDF হিসেবে সংরক্ষণ
+                </button>
+                <a href="index.html" class="bg-gray-500 text-white py-2 px-5 rounded hover:bg-gray-600 transition duration-200 text-sm inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    ফর্মে ফিরে যান
+                </a>
+            </div>
+            <div class="flex justify-center gap-2">
+                <button onclick="toggleEditMode()" id="editModeBtn" class="bg-green-500 text-white py-2 px-5 rounded hover:bg-green-600 transition duration-200 text-sm inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    সম্পাদনা মোড
+                </button>
+                <button onclick="resetDocument()" class="bg-red-500 text-white py-2 px-5 rounded hover:bg-red-600 transition duration-200 text-sm inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    রিসেট
+                </button>
+            </div>
+            <p class="mt-2 text-xs text-gray-600">নোট: সম্পাদনা মোড চালু করে চুক্তিপত্রের যেকোনো লাইনে ক্লিক করে সম্পাদনা করুন। শর্তাবলী যোগ/বাদ দিতে পারবেন।</p>
         </div>
 
         <!-- First A4 Page -->
-        <div class="a4-page bg-white shadow-md rounded-md p-6 sm:p-8 md:p-12 mb-8 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-4 print:px-24 print:w-full print:max-w-none print:mx-auto print:border-none print:overflow-hidden text-justify">
-            <h1 class="text-2xl sm:text-2xl md:text-3xl font-extrabold text-center mb-4 md:mt-8 print:mt-16 print:text-3xl" contenteditable="true">বিসমিল্লাহির রাহমানির রাহিম</h1>
-            <h2 class="text-xl sm:text-xl md:text-2xl underline decoration-1 underline-offset-2 text-center mb-6 print:text-2xl" contenteditable="true">ফ্ল্যাট ভাড়ানামা চুক্তিপত্র</h2>
+        <div class="a4-page bg-white shadow-md rounded-md p-6 sm:p-8 md:p-12 mb-8 box-border overflow-hidden print:shadow-none print:rounded-none print:mb-0 print:px-24 print:w-full print:max-w-none print:mx-auto print:border-none text-justify">
+            <h1 class="text-2xl sm:text-2xl md:text-3xl font-extrabold text-center mb-4 md:mt-8 print:mt-16 print:text-3xl" contenteditable="false">বিসমিল্লাহির রাহমানির রাহিম</h1>
+            <h2 class="text-xl sm:text-xl md:text-2xl underline decoration-1 underline-offset-2 text-center mb-6 print:text-2xl" contenteditable="false">ফ্ল্যাট ভাড়ানামা চুক্তিপত্র</h2>
 
             <!-- Owner Section -->
-            <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true" id="owner-section">
+            <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="false" id="owner-section">
                 <span class="text-amber-700 print:text-black">[মালিক পক্ষের তথ্য...]</span>
             </p>
             <div class="text-right mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12 text-xs sm:text-sm print:text-xs">………………………………………<br/>১ম পক্ষ/ মালিক পক্ষের স্বাক্ষর</div>
 
             <!-- Tenant Section -->
-            <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true">
+            <p class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="false">
                 <strong class="font-semibold"></strong> নামঃ <span id="tenant-name" class="text-amber-700 print:text-black"></span>, ভোটার আইডি নং- <span id="voter-id" class="text-amber-700 print:text-black"></span>, পিতাঃ <span id="father-name" class="text-amber-700 print:text-black"></span>, মাতাঃ <span id="mother-name" class="text-amber-700 print:text-black"></span>, 
                 ঠিকানাঃ <span id="holding-number" class="text-amber-700 print:text-black"></span>, <span id="village" class="text-amber-700 print:text-black"></span>, ডাকঘর- <span id="post-office" class="text-amber-700 print:text-black"></span>,
                 <span id="sadar" class="text-amber-700 print:text-black"></span>, <span id="pourosoba" class="text-amber-700 print:text-black"></span>, <span id="zila" class="text-amber-700 print:text-black"></span>, <span id="division" class="text-amber-700 print:text-black"></span>।
@@ -102,47 +208,47 @@
             <div class="text-right mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12 text-xs sm:text-sm print:text-[14px]">…………………………………………<br/>২য় পক্ষ/ ভাড়াটিয়া পক্ষের স্বাক্ষর</div>
 
             <!-- Agreement Preamble -->
-            <p id="agreement-preamble" class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="true">
+            <p id="agreement-preamble" class="mb-4 text-sm sm:text-base print:text-[14px]" contenteditable="false">
                 <span class="text-amber-700 print:text-black">[চুক্তির ভূমিকা এখানে প্রদর্শিত হবে]</span>
             </p>
         </div>
 
         <!-- Second A4 Page -->
-        <div class="a4-page bg-white shadow-md rounded-md px-4 sm:px-8 lg:px-12 mt-12 md:p-12 box-border overflow-wrap-break-word print:shadow-none print:rounded-none print:mb-0 print:px-20 print:w-full print:max-w-none print:m-auto print:border-none print:overflow-hidden text-justify">
+        <div class="a4-page bg-white shadow-md rounded-md px-4 sm:px-8 lg:px-12 mt-12 md:p-12 box-border overflow-hidden print:shadow-none print:rounded-none print:mb-0 print:px-20 print:w-full print:max-w-none print:m-auto print:border-none text-justify">
             <h2 class="sm:pt-12 text-2xl sm:text-xl md:text-2xl font-extrabold text-center mb-4 sm:mb-6 print:text-[20px] print:mt-8 print:font-extra-bold">-: শর্তাবলী :-</h2>
 
             <!-- Conditions List -->
             <ol id="conditions-list" class="bengali-list space-y-2 sm:space-y-3 pl-8 sm:pl-10 print:space-y-2 print:text-[14px] text-sm sm:text-base">
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ফ্ল্যাটের ভাড়ার অবশিষ্ট <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা ফ্ল্যাটের চাবি নেওয়ার সময় ভাড়াটিয়া/২য় পক্ষ, ১ম পক্ষের/মালিক পক্ষের নিকট পরিশোধ করতে বাধ্য থাকিবেন।             
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    ফ্ল্যাটের ভাড়ার অবশিষ্ট <span id="total-rent-condition" class="text-amber-700 print:text-black">[মোট ভাড়া]</span> টাকা ফ্ল্যাটের চাবি নেওয়ার সময় ভাড়াটিয়া/২য় পক্ষ, ১ম পক্ষের/মালিক পক্ষের নিকট পরিশোধ করতে বাধ্য থাকিবেন।             
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    কোনো কারণ বশত ভাড়া বাতিল হলে ভাড়াটিয়া বা ২য় পক্ষকে এক মাসের ভাড়া পরিশোধ করতে বাধ্য থাকিবেন এবং ফ্ল্যাট বাড়িটি ছাড়িয়ে দিলে বা ছাড়াইয়া নিলে চুক্তিপত্র বাতিল হইবে।              
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    কোনো কারণ বশত ভাড়া বাতিল হলে ভাড়াটিয়া বা ২য় পক্ষকে এক মাসের ভাড়া পরিশোধ করতে বাধ্য থাকিবেন এবং ফ্ল্যাট বাড়িটি ছাড়িয়ে দিলে বা ছাড়াইয়া নিলে চুক্তিপত্র বাতিল হইবে।              
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    গ্যাস সিলিন্ডার (১২.৫ কেজি ২টি), পানির বিল, জেনারেটর বিল, সার্ভিস বা মেইনটেইন্যান্স বিল, <span id="gas-responsibility" class="text-amber-700 print:text-black">[১ম পক্ষ / ২য় পক্ষ]</span> যথাসময়ে মাল্টিপ্ল্যান লিমিটেড কর্তৃপক্ষের অফিসে প্রদান করতে বাধ্য থাকিবেন। বিদ্যুৎ বিল <span id="electricity-responsibility" class="text-amber-700 print:text-black">[১ম পক্ষ / ২য় পক্ষ]</span> প্রদান করিতে বাধ্য থাকিবেন। ভাড়াটিয়া যদি ইন্টারনেট ব্যবহার করেন, তাহলে ইন্টারনেট বিল ২য় পক্ষ/ভাড়াটিয়া প্রদান করিতে বাধ্য থাকিবেন। 
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    গ্যাস সিলিন্ডার (১২.৫ কেজি ২টি), পানির বিল, জেনারেটর বিল, সার্ভিস বা মেইনটেইন্যান্স বিল, <span id="gas-responsibility" class="text-amber-700 print:text-black">[১ম পক্ষ / ২য় পক্ষ]</span> যথাসময়ে মাল্টিপ্ল্যান লিমিটেড কর্তৃপক্ষের অফিসে প্রদান করতে বাধ্য থাকিবেন। বিদ্যুৎ বিল <span id="electricity-responsibility" class="text-amber-700 print:text-black">[১ম পক্ষ / ২য় পক্ষ]</span> প্রদান করিতে বাধ্য থাকিবেন। ভাড়াটিয়া যদি ইন্টারনেট ব্যবহার করেন, তাহলে ইন্টারনেট বিল ২য় পক্ষ/ভাড়াটিয়া প্রদান করিতে বাধ্য থাকিবেন। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ভাড়াকৃত ফ্ল্যাট বাড়িটির মেয়াদ পর্যন্ত আপনি ২য় পক্ষের হেফাজতে থাকিবে, প্রয়োজনে পরবর্তী মাসের ভাড়ার জন্য ভাড়াটিয়া আসলে ২য় পক্ষ ফ্ল্যাট দেখাতে বাধ্য থাকিবেন। তবে ১ম পক্ষ/মালিক পক্ষ ভাড়াটিয়ার সাথে থাকিবেন।     
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    ভাড়াকৃত ফ্ল্যাট বাড়িটির মেয়াদ পর্যন্ত আপনি ২য় পক্ষের হেফাজতে থাকিবে, প্রয়োজনে পরবর্তী মাসের ভাড়ার জন্য ভাড়াটিয়া আসলে ২য় পক্ষ ফ্ল্যাট দেখাতে বাধ্য থাকিবেন। তবে ১ম পক্ষ/মালিক পক্ষ ভাড়াটিয়ার সাথে থাকিবেন।     
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    আপনি ২য় পক্ষ সরকারের প্রচলিত আইন বা সামাজিক অথবা মাল্টিপ্ল্যান কর্তৃপক্ষের নিয়ম কানুন এর বর্হিভূত কোন প্রকার কাজ করিতে পারিবেন না। কোন ধরনের অন্যায় অসামাজিক কার্যকলাপের জন্য আপনি ২য় পক্ষ একক ভাবে দায়ী থাকিবেন। কোন অবস্থাতেই ১ম পক্ষকে/মালিক পক্ষকে জড়ানো যাইবে না। 
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    আপনি ২য় পক্ষ সরকারের প্রচলিত আইন বা সামাজিক অথবা মাল্টিপ্ল্যান কর্তৃপক্ষের নিয়ম কানুন এর বর্হিভূত কোন প্রকার কাজ করিতে পারিবেন না। কোন ধরনের অন্যায় অসামাজিক কার্যকলাপের জন্য আপনি ২য় পক্ষ একক ভাবে দায়ী থাকিবেন। কোন অবস্থাতেই ১ম পক্ষকে/মালিক পক্ষকে জড়ানো যাইবে না। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২য় পক্ষ ভাড়া গ্রহীতা শুধুমাত্র নিজের পরিবারের লোকজন নিয়া বসবাস করিতে পারিবেন। কোন অবস্থাতেই বাহিরের কোন লোক বসবাসের জন্যে উক্ত ফ্ল্যাট বাড়িটি ব্যবহার করিতে পারিবেন না। এইরূপ কোন কিছু প্রকাশ পাইলে সার্বিকভাবে ২য় পক্ষ নিজে দায়ী থাকিবেন এবং ১ম পক্ষ বিনা নোটিশে ২য় পক্ষকে ফ্ল্যাট বাড়িটি ছাড়িতে বাধ্য করিতে পারিবেন। 
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    ২য় পক্ষ ভাড়া গ্রহীতা শুধুমাত্র নিজের পরিবারের লোকজন নিয়া বসবাস করিতে পারিবেন। কোন অবস্থাতেই বাহিরের কোন লোক বসবাসের জন্যে উক্ত ফ্ল্যাট বাড়িটি ব্যবহার করিতে পারিবেন না। এইরূপ কোন কিছু প্রকাশ পাইলে সার্বিকভাবে ২য় পক্ষ নিজে দায়ী থাকিবেন এবং ১ম পক্ষ বিনা নোটিশে ২য় পক্ষকে ফ্ল্যাট বাড়িটি ছাড়িতে বাধ্য করিতে পারিবেন। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ২য় পক্ষ ভাড়াকৃত ফ্ল্যাট বাড়িটি বা ফ্ল্যাটের কোন অংশ কাহারো নিকট পুনরায় ভাড়া (সাবলেট) দিতে পারিবেন না। 
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    ২য় পক্ষ ভাড়াকৃত ফ্ল্যাট বাড়িটি বা ফ্ল্যাটের কোন অংশ কাহারো নিকট পুনরায় ভাড়া (সাবলেট) দিতে পারিবেন না। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
-                <li contenteditable="true" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
-                    ফ্ল্যাটের রং, ভাঙ্গাচোরা, দেয়ালের মধ্যে আঠা অথবা কস্টিপ দিয়ে ফ্ল্যাটের কোন অংশ নষ্ট করিলে, ভাড়াটিয়া/২য় পক্ষ নিজ খরচে মেরামত করতে বাধ্য থাকিবেন এবং যেহেতু এটি একটি আবাসিক টাওয়ার সেহেতু ফ্ল্যাটের মধ্যে কোন ধরনের গায়ে হলুদ, সামাজিক অথবা রাজনৈতিক অনুষ্টান করা যাবে না। 
+                <li contenteditable="false" tabindex="0" class="relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0">
+                    ফ্ল্যাটের রং, ভাঙ্গাচোরা, দেয়ালের মধ্যে আঠা অথবা কস্টিপ দিয়ে ফ্ল্যাটের কোন অংশ নষ্ট করিলে, ভাড়াটিয়া/২য় পক্ষ নিজ খরচে মেরামত করতে বাধ্য থাকিবেন এবং যেহেতু এটি একটি আবাসিক টাওয়ার সেহেতু ফ্ল্যাটের মধ্যে কোন ধরনের গায়ে হলুদ, সামাজিক অথবা রাজনৈতিক অনুষ্টান করা যাবে না। 
                     <span class="delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden" onclick="deleteCondition(this)" title="এই শর্তটি মুছুন">⛔</span>
                 </li>
             </ol>
@@ -151,14 +257,14 @@
             <button type="button" class="add-item-button inline-block mt-4 py-1.5 px-3 bg-emerald-500 text-white border-none rounded cursor-pointer text-sm transition duration-200 hover:bg-emerald-600 print:hidden" onclick="addCondition()">+ নতুন শর্ত যোগ করুন</button>
             
             <div class="mt-4 print:mt-6">
-                <p class="mt-4 print:text-[14px] px-4 sm:px-8 md:px-12 text-justify ms-4 sm:ms-8 text-sm sm:text-base" contenteditable="true">
-                    এতদ্বার্থে স্বেচ্ছায়, স্বজ্ঞানে, সুস্থ মস্তিষ্কে, আমরা উভয় পক্ষ অত্র ফ্ল্যাট বাড়িটির ভাড়ানামা চুক্তিপত্র 
+                <p class="mt-4 print:text-[14px] px-4 sm:px-8 md:px-12 text-justify ms-4 sm:ms-8 text-sm sm:text-base" contenteditable="false">
+                    এতদ্বার্থে স্বেচ্ছায়, স্বজ্ঞানে, সুস্থ মস্তিষ্কে, আমরা উভয় পক্ষ অত্র ফ্ল্যাট বাড়িটির ভাড়ানামা চুক্তিপত্র 
                 </p>
                 <p class="px-4 sm:px-8 md:px-12 text-sm sm:text-base">পড়িয়া ও বুঝিয়া নিম্নে নিজ নিজ স্বাক্ষর দ্বারা সম্পাদন করিলাম।</p>
             </div>
 
-            <h3 class="text-base sm:text-[14px] mt-6 mb-2 underline decoration-1 underline-offset-2 print:text-base text-center" contenteditable="true">তপশীল</h3>
-            <p class="mb-4 print:text-[14px] text-justify px-4 sm:px-8 md:px-12 text-sm sm:text-base" contenteditable="true">
+            <h3 class="text-base sm:text-[14px] mt-6 mb-2 underline decoration-1 underline-offset-2 print:text-base text-center" contenteditable="false">তপশীল</h3>
+            <p class="mb-4 print:text-[14px] text-justify px-4 sm:px-8 md:px-12 text-sm sm:text-base" contenteditable="false">
                 ভবনের নাম <span id="flat-info" class="text-amber-700 print:text-black"></span> মাল্টিপ্ল্যান শাহজাজাল সিটি, প্লট নং- ডি/১, ব্লক-ডি, উপশহর, থানা-শাহপরান, জেলা-সিলেট।
             </p>
 
@@ -173,6 +279,77 @@
             </div>
         </div>
     </div>
+    
+    <!-- Scripts -->
     <script src="scripts.js"></script>
+    <script>
+        // Toggle edit mode
+        function toggleEditMode() {
+            const editables = document.querySelectorAll('[contenteditable]');
+            const editModeBtn = document.getElementById('editModeBtn');
+            const isEditable = editables[0].getAttribute('contenteditable') === 'true';
+            
+            editables.forEach(el => {
+                el.setAttribute('contenteditable', isEditable ? 'false' : 'true');
+            });
+            
+            if (isEditable) {
+                editModeBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    সম্পাদনা মোড`;
+                editModeBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                editModeBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+            } else {
+                editModeBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    সম্পাদনা বন্ধ করুন`;
+                editModeBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                editModeBtn.classList.add('bg-red-500', 'hover:bg-red-600');
+            }
+        }
+        
+        // Reset document to original state
+        function resetDocument() {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি সমস্ত পরিবর্তন বাতিল করতে চান?')) {
+                location.reload();
+            }
+        }
+        
+        // Save as PDF function
+        function saveAsPDF() {
+            // Hide elements that shouldn't be in the PDF
+            const printHiddenElements = document.querySelectorAll('.print-hidden');
+            printHiddenElements.forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Set all contenteditable to false temporarily
+            const editables = document.querySelectorAll('[contenteditable]');
+            editables.forEach(el => {
+                el.setAttribute('contenteditable', 'false');
+            });
+            
+            // Print the document (which will create a PDF when "Save as PDF" is selected)
+            window.print();
+            
+            // Restore the elements and contenteditable attributes
+            setTimeout(() => {
+                printHiddenElements.forEach(el => {
+                    el.style.display = '';
+                });
+                
+                const isEditMode = document.getElementById('editModeBtn').classList.contains('bg-red-500');
+                if (isEditMode) {
+                    editables.forEach(el => {
+                        el.setAttribute('contenteditable', 'true');
+                    });
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
