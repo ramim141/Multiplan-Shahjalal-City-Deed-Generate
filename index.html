@@ -142,7 +142,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1  gap-4 mb-4">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="flat_type" class="block text-gray-700 mb-1">ফ্ল্যাট টাইপ <span class="text-red-500">*</span></label>
                             <select name="flat_type" id="flat_type" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
@@ -160,29 +160,26 @@
                                 <option value="partial">আংশিক কার পার্কিং</option> 
                             </select>
                         </div>
-                      
-                        
                     </div>
-                   
-                    <div>
-
-                        <div class="grid grid-cols-1  gap-4 mb-4">
-                                <div>
-                                    <label for="gas" class="block text-gray-700 text-sm mb-1">গ্যাস, পানি, জেনারেটর <span class="text-red-500">*</span></label>
-                                    <select name="gas" id="gas" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">    
-                                        <option value="yes">১ম পক্ষ/মালিক</option>
-                                        <option value="no">২য় পক্ষ/ভাড়াটিয়া</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="electricity" class="block text-gray-700 text-sm mb-1">বিদ্যুৎ বিল <span class="text-red-500">*</span></label>
-                                    <select name="electricity" id="electricity" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">    
-                                        <option value="yes">১ম পক্ষ/মালিক</option>
-                                        <option value="no">২য় পক্ষ/ভাড়াটিয়া</option>
-                                    </select>
-                                </div>
+                </div>
+                <!-- Bill responsibility -->
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mt-6">
+                    <h2 class="text-lg font-semibold mb-4 text-gray-700">বিল দায়িত্ব</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="gas" class="block text-gray-700 mb-1">গ্যাস, পানি, জেনারেটর <span class="text-red-500">*</span></label>
+                            <select name="gas" id="gas" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">    
+                                <option value="yes">১ম পক্ষ/মালিক</option>
+                                <option value="no">২য় পক্ষ/ভাড়াটিয়া</option>
+                            </select>
                         </div>
-                       
+                        <div>
+                            <label for="electricity" class="block text-gray-700 mb-1">বিদ্যুৎ বিল <span class="text-red-500">*</span></label>
+                            <select name="electricity" id="electricity" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">    
+                                <option value="yes">১ম পক্ষ/মালিক</option>
+                                <option value="no">২য় পক্ষ/ভাড়াটিয়া</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -192,7 +189,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="tenant_name" class="block text-gray-700 mb-1">ভাড়াটিয়া নাম <span class="text-red-500">*</span></label>
-                            <input type="text" id="tenant_name" name="tenant_name" placeholder="টাইপ করুন" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
+                            <input type="text" id="tenant_name" name="tenant_name" placeholder="আপনার নাম বাংলায় লিখুন" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
                         </div>
                         <div>
                             <label for="mobile" class="block text-gray-700 mb-1">মোবাইল <span class="text-red-500">*</span></label>
@@ -200,15 +197,15 @@
                         </div>
                         <div>
                             <label for="father_name" class="block text-gray-700 mb-1">বাবার নাম</label>
-                            <input type="text" id="father_name" name="father_name" placeholder="টাইপ করুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
+                            <input type="text" id="father_name" name="father_name" placeholder="বাবার নাম বাংলায় লিখুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
                         </div>
                         <div>
                             <label for="mother_name" class="block text-gray-700 mb-1">মাতার নাম</label>
-                            <input type="text" id="mother_name" name="mother_name" placeholder="টাইপ করুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
+                            <input type="text" id="mother_name" name="mother_name" placeholder="মাতার নাম বাংলায় লিখুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
                         </div>
                         <div>
                             <label for="voter_id" class="block text-gray-700 mb-1">ভোটার আইডি</label>
-                            <input type="text" id="voter_id" name="voter_id" placeholder="ভোটার আইডি লিখুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
+                            <input type="text" id="voter_id" name="voter_id" placeholder="ভোটার আইডি নম্বর লিখুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
                         </div>
                     </div>
                 </div>
@@ -219,16 +216,16 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         <div>
                             <label for="village" class="block text-gray-700 mb-1">গ্রাম/রাস্তা</label>
-                            <input type="text" id="village" name="village" placeholder="গ্রাম/রাস্তা(যদি থাকে)" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
+                            <input type="text" id="village" name="village" placeholder="গ্রাম/রাস্তা নাম বাংলায় লিখুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
                         </div>
                         <div>
                             <label for="holding_number" class="block text-gray-700 mb-1">বাসা/হোল্ডিং</label>
-                            <input type="text" id="holding_number" name="holding_number" placeholder="বাসা/হোল্ডিং(যদি থাকে)" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
+                            <input type="text" id="holding_number" name="holding_number" placeholder="বাসা/হোল্ডিং নম্বর লিখুন" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
                         </div>
                         <div>
                             <label for="post_office" class="block text-gray-700 mb-1">ডাকঘর</label>
                             <select name="post_office" id="post_office" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" selected disabled>ডাকঘর নির্বাচন করুন</option>
+                                <option value="">ডাকঘর নির্বাচন করুন</option>
                                 <option value="ঢাকা">ঢাকা</option>
                                 <option value="সিলেট">সিলেট</option>
                                 <option value="চট্টগ্রাম">চট্টগ্রাম</option>
@@ -242,7 +239,7 @@
                         <div>
                             <label for="sadar" class="block text-gray-700 mb-1">সদর</label>
                             <select name="sadar" id="sadar" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" selected disabled>সদর নির্বাচন করুন</option>
+                                <option value="">সদর নির্বাচন করুন</option>
                                 <option value="ঢাকা">ঢাকা</option>
                                 <option value="চট্টগ্রাম">চট্টগ্রাম</option>
                                 <option value="খুলনা">খুলনা</option>
@@ -256,7 +253,7 @@
                         <div>
                             <label for="pourosoba" class="block text-gray-700 mb-1">পৌরসভা</label>
                             <select name="pourosoba" id="pourosoba" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" selected disabled>পৌরসভা নির্বাচন করুন</option>
+                                <option value="">পৌরসভা নির্বাচন করুন</option>
                                 <option value="ঢাকা">ঢাকা</option>
                                 <option value="চট্টগ্রাম">চট্টগ্রাম</option>
                                 <option value="খুলনা">খুলনা</option>
@@ -274,7 +271,7 @@
                         <div>
                             <label for="zila" class="block text-gray-700 mb-1">জেলা</label>
                             <select name="zila" id="zila" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" selected disabled  >জেলা নির্বাচন করুন</option>
+                                <option value="">জেলা নির্বাচন করুন</option>
                                 <option value="ঢাকা">ঢাকা</option>
                                 <option value="চট্টগ্রাম">চট্টগ্রাম</option>
                                 <option value="খুলনা">খুলনা</option>
@@ -293,7 +290,7 @@
                         <div>
                             <label for="division" class="block text-gray-700 mb-1">বিভাগ</label>
                             <select name="division" id="division" class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" selected disabled>বিভাগ নির্বাচন করুন</option>
+                                <option value="">বিভাগ নির্বাচন করুন</option>
                                 <option value="ঢাকা">ঢাকা</option>
                                 <option value="চট্টগ্রাম">চট্টগ্রাম</option>
                                 <option value="খুলনা">খুলনা</option>
@@ -322,7 +319,7 @@
                         <div>
                             <label for="total_rent" class="block text-gray-700 mb-1">মোট ভাড়া (মাসিক) <span class="text-red-500">*</span></label>
                             <select name="total_rent" id="total_rent" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" selected disabled>টাকার পরিমাণ নির্বাচন করুন</option>
+                                <option value="">টাকার পরিমাণ নির্বাচন করুন</option>
                                 <option value="15000">১৫,০০০/= (পনেরো হাজার টাকা)</option> 
                                 <option value="20000">২০,০০০/= (বিশ হাজার টাকা)</option>
                                 <option value="25000">২৫,০০০/= (পচিশ হাজার টাকা)</option>
@@ -347,7 +344,7 @@
                         <div>
                             <label for="advance" class="block text-gray-700 mb-1">জামানত/অগ্রীম <span class="text-red-500">*</span></label>
                             <select name="advance" id="advance" required class="w-full p-2 border rounded focus:border-orange-500 focus:ring-2 focus:ring-orange-300 focus:outline-none transition duration-200">
-                                <option value="" class="text-gray-500" selected disabled>জামানত/অগ্রীম নির্বাচন করুন</option>টাকার পরিমাণ নির্বাচন করুন</option>
+                                <option value="">টাকার পরিমাণ নির্বাচন করুন</option>
                                 <option value="5000">৫,০০০/= (পাঁচ হাজার টাকা)</option>
                                 <option value="10000">১০,০০০/= (দশ হাজার টাকা)</option>
                                 <option value="15000">১৫,০০০/= (পনেরো হাজার টাকা)</option>
@@ -370,7 +367,7 @@
                 </div>
 
                 <div class="flex justify-center mt-8">
-                    <button type="submit" class="w-full md:w-2/3 lg:w-1/2 bg-orange-500 text-white p-3 rounded-lg font-semibold hover:bg-orange-600 transition duration-200 flex items-center justify-center">
+                    <button type="submit" class="w-full md:w-2/3 lg:w-full bg-orange-500 text-white p-3 rounded-lg font-semibold hover:bg-orange-600 transition duration-200 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z" clip-rule="evenodd" />
                         </svg>
@@ -397,32 +394,6 @@
                     e.preventDefault();
                     alert('শেষ তারিখ অবশ্যই শুরু তারিখের পরে হতে হবে।');
                     return;
-                }
-                
-                // Store form data in localStorage for potential recovery
-                const formData = new FormData(this);
-                const formDataObj = {};
-                formData.forEach((value, key) => {
-                    formDataObj[key] = value;
-                });
-                localStorage.setItem('tenantFormData', JSON.stringify(formDataObj));
-            });
-            
-            // Load saved form data if available
-            window.addEventListener('load', function() {
-                const savedData = localStorage.getItem('tenantFormData');
-                if (savedData) {
-                    try {
-                        const formData = JSON.parse(savedData);
-                        Object.keys(formData).forEach(key => {
-                            const field = document.querySelector(`[name="${key}"]`);
-                            if (field) {
-                                field.value = formData[key];
-                            }
-                        });
-                    } catch (e) {
-                        console.error('Error loading saved form data:', e);
-                    }
                 }
             });
         </script>

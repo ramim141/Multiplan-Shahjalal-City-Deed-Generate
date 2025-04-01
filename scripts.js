@@ -78,114 +78,40 @@ const bengaliDigits = {
 
 // Function to convert English digits (0-9) to Bengali digits (০-৯)
 function convertToBengaliNumerals(str) {
-  if (str === null || str === undefined) return "";
-  const strValue = String(str);
-  return strValue.replace(/[0-9]/g, (digit) => bengaliDigits[digit] || digit);
+  if (!str) return "";
+  return String(str).replace(/[0-9]/g, (digit) => bengaliDigits[digit] || digit);
 }
 
-// Bengali number words map
+// Bengali number words map for common values
 const bengaliNumberWords = {
-  0: "শূন্য",
-  1: "এক",
-  2: "দুই",
-  3: "তিন",
-  4: "চার",
-  5: "পাঁচ",
-  6: "ছয়",
-  7: "সাত",
-  8: "আট",
-  9: "নয়",
-  10: "দশ",
-  11: "এগারো",
-  12: "বারো",
-  13: "তেরো",
-  14: "চৌদ্দ",
-  15: "পনেরো",
-  16: "ষোল",
-  17: "সতেরো",
-  18: "আঠারো",
-  19: "উনিশ",
-  20: "বিশ",
-  21: "একুশ",
-  22: "বাইশ",
-  23: "তেইশ",
-  24: "চব্বিশ",
-  25: "পঁচিশ",
-  26: "ছাব্বিশ",
-  27: "সাতাশ",
-  28: "আটাশ",
-  29: "ঊনত্রিশ",
-  30: "ত্রিশ",
-  40: "চল্লিশ",
-  50: "পঞ্চাশ",
-  60: "ষাট",
-  70: "সত্তর",
-  80: "আশি",
-  90: "নব্বই",
-  100: "একশত",
-  1000: "এক হাজার",
+  5000: "পাঁচ হাজার",
+  10000: "দশ হাজার",
+  15000: "পনেরো হাজার",
+  20000: "বিশ হাজার",
+  25000: "পচিশ হাজার",
+  30000: "ত্রিশ হাজার",
+  35000: "পঁইত্রিশ হাজার",
+  40000: "চল্লিশ হাজার",
+  45000: "পঁয়তাল্লিশ হাজার",
+  50000: "পঞ্চাশ হাজার",
+  55000: "পঞ্চান্ন হাজার",
+  60000: "ষাট হাজার",
+  65000: "পঁষষট্টি হাজার",
+  70000: "সত্তর হাজার",
+  75000: "পঁচাত্তর হাজার",
+  80000: "আশি হাজার",
+  85000: "পঁচাশি হাজার",
+  90000: "নব্বই হাজার",
+  95000: "পঁচানব্বই হাজার",
   100000: "এক লক্ষ",
-  10000000: "এক কোটি",
+  105000: "এক লক্ষ পাঁচ হাজার",
 };
 
 // Helper function to convert number to Bengali words
 function convertToBengaliWords(numStr) {
+  if (!numStr) return "";
   const num = parseInt(numStr, 10);
-  if (isNaN(num)) return "";
-  
-  // Direct mapping for common numbers
-  if (bengaliNumberWords[num] !== undefined) {
-    return bengaliNumberWords[num];
-  }
-  
-  // Handle thousands
-  if (num >= 1000 && num < 100000) {
-    const thousands = Math.floor(num / 1000);
-    const remainder = num % 1000;
-    
-    let result = "";
-    if (thousands === 1) {
-      result = "এক হাজার";
-    } else if (bengaliNumberWords[thousands]) {
-      result = bengaliNumberWords[thousands] + " হাজার";
-    } else {
-      result = convertToBengaliNumerals(thousands) + " হাজার";
-    }
-    
-    if (remainder > 0) {
-      if (bengaliNumberWords[remainder]) {
-        result += " " + bengaliNumberWords[remainder];
-      } else {
-        result += " " + convertToBengaliNumerals(remainder);
-      }
-    }
-    
-    return result;
-  }
-  
-  // Handle lakhs (100,000s)
-  if (num >= 100000 && num < 10000000) {
-    const lakhs = Math.floor(num / 100000);
-    const remainder = num % 100000;
-    
-    let result = "";
-    if (lakhs === 1) {
-      result = "এক লক্ষ";
-    } else if (bengaliNumberWords[lakhs]) {
-      result = bengaliNumberWords[lakhs] + " লক্ষ";
-    } else {
-      result = convertToBengaliNumerals(lakhs) + " লক্ষ";
-    }
-    
-    if (remainder > 0) {
-      result += " " + convertToBengaliWords(remainder);
-    }
-    
-    return result;
-  }
-  
-  // Default: just convert the digits
-  return convertToBengaliNumerals(num.toString());
+  return bengaliNumberWords[num] || convertToBengaliNumerals(num);
 }
 
 // Function to format date in Bengali (DD/MM/YYYY)
@@ -209,6 +135,10 @@ function formatBengaliDate(dateString) {
 
 // Function to calculate total duration and amount
 function calculateDurationAndTotal(startDateStr, endDateStr, monthlyRent) {
+  if (!startDateStr || !endDateStr || !monthlyRent) {
+    return { months: 0, total: 0 };
+  }
+  
   try {
     const startDate = new Date(startDateStr);
     const endDate = new Date(endDateStr);
@@ -217,7 +147,7 @@ function calculateDurationAndTotal(startDateStr, endDateStr, monthlyRent) {
       return { months: 0, total: 0 };
     }
     
-    // Calculate months difference more accurately
+    // Calculate months difference
     let months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
     months += endDate.getMonth() - startDate.getMonth();
     
@@ -229,7 +159,7 @@ function calculateDurationAndTotal(startDateStr, endDateStr, monthlyRent) {
     // Ensure at least 1 month
     months = Math.max(1, months);
     
-    const totalAmount = months * parseInt(monthlyRent || 0, 10);
+    const totalAmount = months * parseInt(monthlyRent, 10);
     return { months, total: totalAmount };
   } catch (error) {
     console.error("Error calculating duration:", error);
@@ -243,47 +173,28 @@ function setText(id, value) {
   if (el) el.textContent = value || "";
 }
 
-// Function to populate duplicate fields
-function populateDuplicates() {
-  try {
-    const advanceDateVal = document.getElementById("advance-date")?.textContent;
-    const advanceDateInlineEl = document.getElementById("advance-date-inline");
-    if (advanceDateInlineEl && advanceDateVal) {
-      advanceDateInlineEl.textContent = advanceDateVal;
-    }
-
-    const flatInfoVal = document.getElementById("flat-info")?.textContent;
-    const flatInfoScheduleEl = document.getElementById("flat-info-schedule");
-    if (flatInfoScheduleEl && flatInfoVal) {
-      flatInfoScheduleEl.textContent = flatInfoVal;
-    }
-  } catch (error) {
-    console.error("Error populating duplicates:", error);
-  }
+// Function to get URL parameter value
+function getParam(key) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(key) || "";
 }
 
 // Condition List Management Functions
 function deleteCondition(buttonElement) {
   const listItem = buttonElement.closest("li");
   if (listItem) {
-    // Add fade-out animation
     listItem.style.transition = "opacity 0.3s ease";
     listItem.style.opacity = "0";
     
-    // Remove after animation completes
     setTimeout(() => {
       listItem.remove();
-      // Renumber the list items (Bengali numbers are handled by CSS counter)
     }, 300);
   }
 }
 
 function addCondition() {
   const list = document.getElementById("conditions-list");
-  if (!list) {
-    console.error("Error: Could not find 'conditions-list' element.");
-    return;
-  }
+  if (!list) return;
   
   const newListItem = document.createElement("li");
   newListItem.setAttribute("contenteditable", "true");
@@ -291,7 +202,6 @@ function addCondition() {
   newListItem.className =
     "relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0";
   
-  // Add with fade-in animation
   newListItem.style.opacity = "0";
   newListItem.textContent = "[নতুন শর্ত এখানে লিখুন]";
   
@@ -305,7 +215,6 @@ function addCondition() {
   newListItem.appendChild(deleteSpan);
   list.appendChild(newListItem);
   
-  // Animate fade in
   setTimeout(() => {
     newListItem.style.transition = "opacity 0.3s ease";
     newListItem.style.opacity = "1";
@@ -323,15 +232,37 @@ function addCondition() {
 // Main function to display data on template.html
 function displayData() {
   try {
-    const params = new URLSearchParams(window.location.search);
-    const getParam = (key) => params.get(key) || "";
+    // Get all form data from URL parameters
+    const owner_id = getParam("owner_id");
+    const flat = getParam("flat");
+    const unit = getParam("unit");
+    const flat_type = getParam("flat_type");
+    const parking = getParam("parking");
+    const gas = getParam("gas");
+    const electricity = getParam("electricity");
+    const tenant_name = getParam("tenant_name");
+    const father_name = getParam("father_name");
+    const mother_name = getParam("mother_name");
+    const voter_id = getParam("voter_id");
+    const mobile = getParam("mobile");
+    const village = getParam("village");
+    const holding_number = getParam("holding_number");
+    const post_office = getParam("post_office");
+    const sadar = getParam("sadar");
+    const pourosoba = getParam("pourosoba");
+    const zila = getParam("zila");
+    const division = getParam("division");
+    const start_date = getParam("start_date");
+    const end_date = getParam("end_date");
+    const total_rent = getParam("total_rent");
+    const advance = getParam("advance");
+    const advance_date = getParam("advance_date");
 
-    // Populate Owner Information
-    const selectedOwnerId = getParam("owner_id");
-    const selectedOwner = owners.find((owner) => owner.id === selectedOwnerId) || owners[0];
+    // 1. Populate Owner Information
+    const selectedOwner = owners.find((owner) => owner.id === owner_id) || {};
     const ownerSectionEl = document.getElementById("owner-section");
     
-    if (ownerSectionEl && selectedOwner) {
+    if (ownerSectionEl && selectedOwner.fullName) {
       let ownerHtml = `<strong class="font-semibold"></strong> নামঃ ${selectedOwner.fullName}`;
       
       if (selectedOwner.ownerContact && selectedOwner.ownerContact !== "N/A") {
@@ -367,74 +298,64 @@ function displayData() {
       ownerSectionEl.innerHTML = '<span class="text-red-500 font-semibold">মালিকের তথ্য পাওয়া যায়নি।</span>';
     }
 
-    // Populate Flat Information
-    setText("flat-info", `${getParam("flat")}, ফ্ল্যাট নং- ${getParam("unit")}`);
+    // 2. Populate Flat Information
+    setText("flat-info", `${flat}, ফ্ল্যাট নং- ${unit}`);
 
-    // Populate Tenant Information
-    setText("tenant-name", getParam("tenant_name"));
-    setText("voter-id", convertToBengaliNumerals(getParam("voter_id")));
-    setText("father-name", getParam("father_name"));
-    setText("mother-name", getParam("mother_name"));
-    setText("holding-number", getParam("holding_number") ? `বাসা/হোল্ডিং- ${convertToBengaliNumerals(getParam("holding_number"))}` : "");
-    setText("village", getParam("village") ? `গ্রাম/রাস্তা- ${getParam("village")}` : "");
-    setText("post-office", getParam("post_office"));
-    setText("sadar", getParam("sadar"));
-    setText("pourosoba", getParam("pourosoba"));
-    setText("zila", getParam("zila"));
-    setText("division", getParam("division"));
-    setText("mobile", convertToBengaliNumerals(getParam("mobile")));
+    // 3. Populate Tenant Information
+    setText("tenant-name", tenant_name);
+    setText("voter-id", convertToBengaliNumerals(voter_id));
+    setText("father-name", father_name);
+    setText("mother-name", mother_name);
+    setText("holding-number", holding_number ? `বাসা/হোল্ডিং- ${convertToBengaliNumerals(holding_number)}` : "");
+    setText("village", village ? `গ্রাম/রাস্তা- ${village}` : "");
+    setText("post-office", post_office);
+    setText("sadar", sadar);
+    setText("pourosoba", pourosoba);
+    setText("zila", zila);
+    setText("division", division);
+    setText("mobile", convertToBengaliNumerals(mobile));
 
-    // Populate Rental Information
-    const startDate = getParam("start_date");
-    const endDate = getParam("end_date");
-    const formattedStartDate = formatBengaliDate(startDate);
-    const formattedEndDate = formatBengaliDate(endDate);
-    const formattedAdvanceDate = formatBengaliDate(getParam("advance_date"));
+    // 4. Format dates
+    const formattedStartDate = formatBengaliDate(start_date);
+    const formattedEndDate = formatBengaliDate(end_date);
+    const formattedAdvanceDate = formatBengaliDate(advance_date);
     
-    setText("start-date", formattedStartDate);
-    setText("end-date", formattedEndDate);
+    // 5. Convert numbers to Bengali
+    const totalRentBengali = convertToBengaliNumerals(total_rent);
+    const totalRentWords = convertToBengaliWords(total_rent);
+    const advanceBengali = convertToBengaliNumerals(advance);
+    const advanceWords = convertToBengaliWords(advance);
     
-    const totalRentValue = getParam("total_rent");
-    const totalRentBengali = convertToBengaliNumerals(totalRentValue || "0");
-    const totalRentWords = convertToBengaliWords(totalRentValue);
-    
-    setText("total-rent-preamble", `${totalRentBengali}/=`);
-    setText("total-rent-condition", `${totalRentBengali}/=`);
-    
-    const advanceValue = getParam("advance");
-    const advanceBengali = convertToBengaliNumerals(advanceValue || "0");
-    const advanceWords = convertToBengaliWords(advanceValue);
-    
-    setText("advance-date", formattedAdvanceDate);
+    // 6. Calculate duration and total amount
+    const durationInfo = calculateDurationAndTotal(start_date, end_date, total_rent);
+    const monthsBengali = convertToBengaliNumerals(durationInfo.months);
+    const monthsWords = convertToBengaliWords(durationInfo.months.toString());
+    const totalAmountBengali = convertToBengaliNumerals(durationInfo.total);
+    const totalAmountWords = convertToBengaliWords(durationInfo.total.toString());
 
-    // Populate Utility Responsibilities
-    const gasResponsibility = getParam("gas") === "yes" ? "১ম পক্ষ" : "২য় পক্ষ";
-    const electricityResponsibility = getParam("electricity") === "yes" ? "১ম পক্ষ" : "২য় পক্ষ";
+    // 7. Set utility responsibilities
+    const gasResponsibility = gas === "yes" ? "১ম পক্ষ" : "২য় পক্ষ";
+    const electricityResponsibility = electricity === "yes" ? "১ম পক্ষ" : "২য় পক্ষ";
     setText("gas-responsibility", gasResponsibility);
     setText("electricity-responsibility", electricityResponsibility);
+    
+    // 8. Set rent amount in condition
+    setText("total-rent-condition", `${totalRentBengali}/=`);
 
-    // Dynamic Agreement Preamble
-    const flatType = getParam("flat_type"); // '1bhk' (furnished) or '2bhk' (unfurnished)
-    const parking = getParam("parking"); // 'yes', 'no', or 'partial'
-    const durationInfo = calculateDurationAndTotal(startDate, endDate, totalRentValue);
-    const totalAmountBengali = convertToBengaliNumerals(durationInfo.total);
-    const totalAmountWords = convertToBengaliWords(durationInfo.total);
-    const monthsBengali = convertToBengaliNumerals(durationInfo.months);
-    const monthsWords = convertToBengaliWords(durationInfo.months);
-
+    // 9. Generate Agreement Preamble
     let preambleText = "আমি ১ম পক্ষ তপশীল বর্ণিত ফ্ল্যাট বাড়িটি ";
     
-    if (flatType === "1bhk" && parking === "yes") {
+    if (flat_type === "1bhk" && parking === "yes") {
       preambleText += "ফার্নিচার সহ এবং কার পার্কিং সহ ";
-    } else if (flatType === "1bhk" && parking === "no") {
+    } else if (flat_type === "1bhk" && parking === "no") {
       preambleText += "ফার্নিচার সহ এবং কার পার্কিং ছাড়া ";
-    } else if (flatType === "2bhk" && parking === "yes") {
+    } else if (flat_type === "2bhk" && parking === "yes") {
       preambleText += "ফার্নিচার ছাড়া এবং কার পার্কিং সহ ";
-    } else if (flatType === "2bhk" && parking === "no") {
+    } else if (flat_type === "2bhk" && parking === "no") {
       preambleText += "ফার্নিচার ছাড়া এবং কার পার্কিং ছাড়া ";
     } else if (parking === "partial") {
       preambleText +=
-        flatType === "1bhk"
+        flat_type === "1bhk"
           ? "ফার্নিচার সহ এবং আংশিক কার পার্কিং সহ "
           : "ফার্নিচার ছাড়া এবং আংশিক কার পার্কিং সহ ";
     }
@@ -443,133 +364,58 @@ function displayData() {
 
     const preambleEl = document.getElementById("agreement-preamble");
     if (preambleEl) preambleEl.textContent = preambleText;
-
-    populateDuplicates();
-    
-    // Enable edit mode toggle functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      // Make sure all delete buttons are properly attached
-      const deleteButtons = document.querySelectorAll('.delete-item');
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          deleteCondition(this);
-        });
-      });
-    });
-    
-    // Store document state in localStorage for recovery
-    storeDocumentState();
     
   } catch (error) {
     console.error("Error displaying data:", error);
-    showErrorMessage("তথ্য লোড বা প্রদর্শন করতে একটি ত্রুটি ঘটেছে।");
+    alert("তথ্য লোড করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
   }
 }
 
-// Function to show error message
-function showErrorMessage(message) {
-  const errorDiv = document.createElement("div");
-  errorDiv.textContent = message;
-  errorDiv.className = "text-red-600 text-center p-4 bg-red-100 border border-red-400 rounded my-4 mx-auto max-w-4xl print:hidden";
+// Toggle edit mode
+function toggleEditMode() {
+  const editables = document.querySelectorAll('[contenteditable]');
+  const editModeBtn = document.getElementById('editModeBtn');
+  const isEditable = editables[0].getAttribute('contenteditable') === 'true';
   
-  const container = document.querySelector(".page-container") || document.body;
-  container.prepend(errorDiv);
+  editables.forEach(el => {
+    el.setAttribute('contenteditable', isEditable ? 'false' : 'true');
+  });
   
-  // Auto-hide after 5 seconds
-  setTimeout(() => {
-    errorDiv.style.transition = "opacity 0.5s ease";
-    errorDiv.style.opacity = "0";
-    setTimeout(() => errorDiv.remove(), 500);
-  }, 5000);
-}
-
-// Function to store document state in localStorage
-function storeDocumentState() {
-  try {
-    const conditionsList = document.getElementById('conditions-list');
-    if (conditionsList) {
-      const conditions = Array.from(conditionsList.children).map(li => {
-        // Remove the delete button text when storing
-        const liClone = li.cloneNode(true);
-        const deleteBtn = liClone.querySelector('.delete-item');
-        if (deleteBtn) deleteBtn.remove();
-        return liClone.textContent.trim();
-      });
-      
-      localStorage.setItem('tenantAgreementConditions', JSON.stringify(conditions));
-    }
-    
-    // Store other editable content
-    const editableElements = document.querySelectorAll('[contenteditable="true"]');
-    const editableContent = {};
-    
-    editableElements.forEach(el => {
-      if (el.id && !el.classList.contains('bengali-list')) {
-        editableContent[el.id] = el.textContent;
-      }
-    });
-    
-    localStorage.setItem('tenantAgreementContent', JSON.stringify(editableContent));
-  } catch (error) {
-    console.error("Error storing document state:", error);
+  if (isEditable) {
+    editModeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+      </svg>
+      সম্পাদনা মোড`;
+    editModeBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
+    editModeBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+  } else {
+    editModeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+      সম্পাদনা বন্ধ করুন`;
+    editModeBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+    editModeBtn.classList.add('bg-red-500', 'hover:bg-red-600');
   }
 }
 
-// Function to restore document state from localStorage
-function restoreDocumentState() {
-  try {
-    // Restore conditions
-    const savedConditions = localStorage.getItem('tenantAgreementConditions');
-    if (savedConditions) {
-      const conditions = JSON.parse(savedConditions);
-      const conditionsList = document.getElementById('conditions-list');
-      
-      if (conditionsList && conditions.length > 0) {
-        // Clear existing conditions
-        conditionsList.innerHTML = '';
-        
-        // Add saved conditions
-        conditions.forEach(condition => {
-          const li = document.createElement('li');
-          li.setAttribute('contenteditable', 'true');
-          li.setAttribute('tabindex', '0');
-          li.className = 'relative block cursor-text p-1 transition duration-300 ease-in-out rounded hover:bg-yellow-100 focus:outline-none focus:bg-yellow-100 focus:ring-2 focus:ring-amber-400 print:cursor-default print:p-0 print:bg-transparent print:shadow-none print:ring-0';
-          li.textContent = condition;
-          
-          const deleteSpan = document.createElement('span');
-          deleteSpan.className = 'delete-item ml-2.5 text-red-500 font-bold inline-block align-middle text-xs px-1 rounded select-none hover:text-red-600 hover:bg-red-100 cursor-pointer print:hidden';
-          deleteSpan.textContent = '⛔';
-          deleteSpan.setAttribute('onclick', 'deleteCondition(this)');
-          deleteSpan.setAttribute('title', 'এই শর্তটি মুছুন');
-          
-          li.appendChild(deleteSpan);
-          conditionsList.appendChild(li);
-        });
-      }
-    }
-    
-    // Restore other editable content
-    const savedContent = localStorage.getItem('tenantAgreementContent');
-    if (savedContent) {
-      const content = JSON.parse(savedContent);
-      
-      Object.keys(content).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.textContent = content[id];
-        }
-      });
-    }
-  } catch (error) {
-    console.error("Error restoring document state:", error);
+// Reset document to original state
+function resetDocument() {
+  if (confirm('আপনি কি নিশ্চিত যে আপনি সমস্ত পরিবর্তন বাতিল করতে চান?')) {
+    location.reload();
   }
 }
 
 // Initialize when document is loaded
 window.addEventListener('DOMContentLoaded', function() {
-  // First load data from URL parameters
+  // Load data from URL parameters
   displayData();
   
-  // Then try to restore any saved edits
-  setTimeout(restoreDocumentState, 500);
+  // Add event listeners to delete buttons
+  document.querySelectorAll('.delete-item').forEach(button => {
+    button.addEventListener('click', function() {
+      deleteCondition(this);
+    });
+  });
 });
